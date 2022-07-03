@@ -1,0 +1,32 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;		/*seleziono il font*/
+	color:white;			/*colore dei caratteri */
+	font-size: 30px;		/*grandezza dei caratteri*/	
+	text-align: center;		/*allineo al centro*/
+	background-color: black;			/*colore dello sfondo*/	
+	font-weight: bold;		/*mette in grassetto*/	
+}
+.bottonelog {			/*Bottone "Login"*/	
+	background-color: #00a885;			/*colore dello sfondo*/	
+	color: black;			/*colore dei caratteri */
+	padding: 14px 20px;			/*sistemo la grandezza*/	
+	margin: 14px 0;			/*aumento lo spazio da sopra*/	
+	border: none;		/*rimuovo il bordo*/	
+	cursor: pointer;	/*seleziona la manina quando ci passi sopra*/	
+	width: 25%;		/*sistemo la grandezza*/	
+	font-size: 30px;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {		/*celle in cui inserisci username e password e le email*/	
+	width: 30%;		/*lo rendo più grande del 30%*/
+	padding: 12px 20px;		/*ingrandisco le celle*/
+	margin: 14px 0;		/*metto dello spazio tra le celle*/
+	font-size: 30px;	/*ingrandisco il font dei caratteri*/
+}
+.formatoimmagine {			/*Logo*/	
+	text-align: center;	
+	margin: 24px 0 12px 0;	/*metto dello spazio tra il logo e le celle*/
+}
+input[type="text"]::placeholder, input[type="password"]::placeholder, input[type="email"]::placeholder {  
+	text-align: center;		/*centro i placeholder all'interno del type text,password,email*/
+}
