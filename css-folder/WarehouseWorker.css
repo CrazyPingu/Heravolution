@@ -1,0 +1,29 @@
+body {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 23px;
+}
+
+input[type=number], input[type=text] {
+    width: 30%;		
+	padding: 12px 20px;		
+	margin: 14px 0;		
+	font-size: 25px;
+}
+
+input[type=button], input[type=submit], select {	
+    text-align: center;			
+	background-color: #00a885;			
+	color: black;			
+	padding: 14px 0px;				
+	margin: 14px 0;				
+	border: none;			
+	cursor: pointer;		
+	width: 15%;		
+    font-size: 25px;	
+}
+
+input[type="text"]::placeholder, input[type="number"]::placeholder {  
+	text-align: center;		
+}
