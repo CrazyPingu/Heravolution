@@ -22,7 +22,7 @@
     <input type="button" value="Logout" onclick="window.location.href='Login.php'"></input>
     <input type="button" value="History of orders" onclick="window.location.href='HistoryOfOrders.php'"></input><br><br>
     <form method="POST">
-        <h3>Order of products</h3>
+        <h2>Order of products</h2>
         <br>
         Address:<input type="text" name="address" required><br>       
         <select name = "product[]" multiple required>
@@ -39,7 +39,7 @@
     </form>
     
     <form method="POST">
-        <h3>Pick up garbage</h3>
+        <h2>Pick up garbage</h2>
         <h5>The price for each trashbag of garbage is 1€</h5>
         <input type="date" name="date" required><br>
         Time:<input type="text" name="time" required pattern="[0-2]{1}[0-9]{1}[:]{1}[0-5]{1}[0-9]{1}" placeholder = "00:00"><br>

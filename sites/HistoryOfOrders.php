@@ -12,7 +12,6 @@
     </head>
     <body>
         <link rel="stylesheet" href="../css-folder/Table.css" />
-        <input type="button" value="Client page" onclick="window.location.href='ClientHome.php'"><br><br>
         <h1>History of Orders</h1>
         <?php
             $query = "SELECT date, address, discountValue, totalPrice, weight, licensePlate FROM order_of_product WHERE fiscalCode = '" . $_SESSION["fiscalCode"] . "' ORDER BY IDOrderOfProduct";
@@ -27,13 +26,13 @@
                         $delivered = "yes";
                     }
                     echo "<tr><td>" . $row["date"]. "</td><td>" . $row["address"]. "</td>
-                        <td>" . $row["discountValue"]. "</td><td>" . $row["totalPrice"]. "</td><td>".$row["weight"]."</td><td>" . $delivered. "</td></tr>";
+                    <td>" . $row["discountValue"]. "</td><td>" . $row["totalPrice"]. "</td><td>".$row["weight"]."</td><td>" . $delivered. "</td></tr>";
                 }
                 echo "</table>";
             } else {
                 echo "No orders";
             }
-        ?>
+            ?>
         <h1>History of garbage orders</h1>
         <?php
             $query = "SELECT licensePlate, date, address, totalPrice, weight FROM pick_up_garbage WHERE fiscalCode = '" . $_SESSION["fiscalCode"] . "' ORDER BY IDOrderGarbage";
@@ -48,12 +47,13 @@
                         $delivered = "yes";
                     }
                     echo "<tr><td>" . $row["date"]. "</td><td>" . $row["address"]. "</td>
-                        <td>" . $row["totalPrice"]. "</td><td>".$row["weight"]."</td><td>" . $delivered. "</td></tr>";
+                    <td>" . $row["totalPrice"]. "</td><td>".$row["weight"]."</td><td>" . $delivered. "</td></tr>";
                 }
                 echo "</table>";
             } else {
                 echo "No orders";
             }
-        ?>
+            ?>
+        <br><br><input type="button" value="Client page" onclick="window.location.href='ClientHome.php'">
     </body>
-</html>
+    </html>

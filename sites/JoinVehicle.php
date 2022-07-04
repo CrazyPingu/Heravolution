@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <title> Enter vehicle </title>
+    <link rel="stylesheet" href="../css-folder/General.css" />
     <h1> Enter vehicle </h1>
     <?php
         $query = "SELECT IDDrives from drives where fiscalCode = '". $_SESSION["fiscalCode"] ."'";

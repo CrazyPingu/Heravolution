@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
     <title> WarehouseWorkerHome </title>
-    <link rel="stylesheet" href="../css-folder/WarehouseWorker.css" />
+    <link rel="stylesheet" href="../css-folder/General.css" />
     <?php
         $query = "SELECT IDWarehouse from warehouse_worker where fiscalCode = '". $_SESSION["fiscalCode"] ."'";
         $result = $conn->query($query);

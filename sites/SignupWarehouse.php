@@ -7,16 +7,17 @@
 <!DOCTYPE html>
 <html>
     <title> Sign in Warehouse </title>
+    <link rel=stylesheet href="../css-folder/General.css" />
+    <h1> Sign in Warehouse </h1>
     <?php
         $query = "SELECT IDWarehouse from warehouse_worker where fiscalCode = '". $_SESSION["fiscalCode"] ."' LIMIT 1";
         $result = $conn->query($query);
         $data =  $result->fetch_assoc();
         if($data["IDWarehouse"] != null) {
-            echo "<input type='button' value='Warehouse Worker Home page' onclick='window.location.href=\"WarehouseWorkerHome.php\"'></input>";
+            echo "<input type='button' value='Warehouse worker page' onclick='window.location.href=\"WarehouseWorkerHome.php\"'></input>";
         }
     ?>
     <br>
-    <h1> Sign in Warehouse </h1>
     <br>
     <form method="post">
         Warehouse available: <select name="warehouse" required>

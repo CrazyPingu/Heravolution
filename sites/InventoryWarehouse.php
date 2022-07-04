@@ -13,7 +13,6 @@
     <body>
         <link rel="stylesheet" href="../css-folder/Table.css" />
         <h1>Inventory of the warehouse</h1>
-        <input type="button" value="Worker page" onclick="window.location.href='WarehouseWorkerHome.php'"><br><br>
         <?php
             $query = "SELECT address, productType, capacity, price, garbageType FROM warehouse, product 
                 WHERE IDOrder IS NULL AND product.IDWarehouse = warehouse.IDWarehouse ORDER BY warehouse.IDWarehouse";
@@ -27,6 +26,7 @@
             } else {
                 echo "No products in stock";
             }
-        ?>
+            ?>
+        <br><br><input type="button" value="Worker page" onclick="window.location.href='WarehouseWorkerHome.php'">
     </body>
 </html>

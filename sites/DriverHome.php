@@ -9,8 +9,9 @@
 <!DOCTYPE html>
 <html>
     <title> Driver Home </title>
+    <link rel="stylesheet" href="../css-folder/General.css" />
     <h1> Driver Home </h1>
-    <br><br>
+    
     <?php
         $query = "SELECT IDOwns from owns where fiscalCode = '". $_SESSION["fiscalCode"] ."'";
         $result = $conn->query($query);
@@ -24,15 +25,7 @@
         if($data["IDDrives"] == null) {
             echo "<script>window.location.href='JoinVehicle.php'</script>";
         }
-    ?>
-    <input type="button" value="Logout" onclick="window.location.href='Login.php'">
-    <input type="button" value="Client page" onclick="window.location.href='ClientHome.php'">
-    <input type="button" value="Add license" onclick="window.location.href='SignupLicenseDriver.php'">
-    <input type="button" value="Change vehicle" onclick="window.location.href='JoinVehicle.php'">
-    <input type="button" value="History of driven vehicles" onclick="window.location.href='HistoryDrivenVehicles.php'">
 
-    <br><br>
-    <?php
         $query = "SELECT driver.licensePlate, loadCapacity FROM driver, vehicle WHERE driver.fiscalCode = '". $_SESSION["fiscalCode"] ."' 
             AND driver.licensePlate = vehicle.licensePlate LIMIT 1";
         $result = $conn->query($query);
@@ -41,10 +34,15 @@
         $loadCapacity = $data["loadCapacity"];
         echo "License plate: ".$licensePlate." | Load capacity: ".$loadCapacity."<br>";
     ?>
+    <br>
+    <input type="button" value="Logout" onclick="window.location.href='Login.php'">
+    <input type="button" value="Client page" onclick="window.location.href='ClientHome.php'">
+    <input type="button" value="Add license" onclick="window.location.href='SignupLicenseDriver.php'">
+    <input type="button" value="Change vehicle" onclick="window.location.href='JoinVehicle.php'">
+    <input type="button" value="History of driven vehicles" onclick="window.location.href='HistoryDrivenVehicles.php'">
 
-    <br><br>
+    <br>
     <h3> Deliver order</h3>
-    <br><br>
 
     <form method="post">
         <select name = "order[]" multiple required>
@@ -59,9 +57,8 @@
         <br><br><input type="submit" name="submit" value="Submit">
     </form>
 
-    <br><br>
+    <br>
     <h3> Pick up garbage </h3>
-    <br><br>
 
     <form method="post">
         <select name = "garbage[]" multiple required>
