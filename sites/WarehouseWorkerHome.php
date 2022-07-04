@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
     <title> WarehouseWorkerHome </title>
+    <link rel="stylesheet" href="../css-folder/WarehouseWorker.css" />
     <?php
         $query = "SELECT IDWarehouse from warehouse_worker where fiscalCode = '". $_SESSION["fiscalCode"] ."'";
         $result = $conn->query($query);
@@ -15,10 +16,14 @@
             echo "<script>window.location.href='SignupWarehouse.php'</script>";
         }
     ?>
+    <h1>Warehouse worker home</h1>
     <input type="button" value="Logout" onclick="window.location.href='Login.php'">
     <input type="button" value="Client page" onclick="window.location.href='ClientHome.php'">
     <input type="button" value="Change Warehouse" onclick="window.location.href='SignupWarehouse.php'">
     <input type="button" value="Warehouse inventory" onclick="window.location.href='InventoryWarehouse.php'">
+
+    <br><br>
+    <h2>Add products</h2>
     <form method = "POST">
         <select name="productType" required>
             <?php
@@ -29,6 +34,7 @@
                 }
             ?>
         </select>
+        <br>
         <select name="garbageType" required>
             <?php
                 $query = "SELECT type FROM garbage";
@@ -38,9 +44,10 @@
                 }
             ?>
         </select>
-        Quantity: <input type='number' name='quantity' required min=1 placeholder = "0">
-        Capacity: <input type='number' name='capacity' required min=1 placeholder = "0">
-        Price: <input type='text' name='price' required min = 1 placeholder = "0">
+        <br>
+        Quantity: <input type='number' name='quantity' required min=1 placeholder = "0"><br>
+        Capacity: <input type='number' name='capacity' required min=1 placeholder = "0"><br>
+        Price: <input type='number' name='price' required min = 1 placeholder = "0" style="position:relative;left:20px;"><br>
         <input type="submit" name="submit" value="submit">
     </form>
 

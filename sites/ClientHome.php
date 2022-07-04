@@ -10,6 +10,7 @@
 
 <head>
     <title>Client Home</title>
+    <link rel="stylesheet" href="../css-folder/General.css" />
     <h1>Client page</h1>
     <?php
         if ($_SESSION["rights"] == "driver") {
