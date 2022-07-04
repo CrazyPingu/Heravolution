@@ -15,6 +15,7 @@
     <input type="button" value="Logout" onclick="window.location.href='Login.php'">
     <input type="button" value="Client Home" onclick="window.location.href='ClientHome.php'">
     <input type="button" value="Change Warehouse" onclick="window.location.href='SignupWarehouse.php'">
+    <input type="button" value="Warehouse inventory" onclick="window.location.href='InventoryWarehouse.php'">
     <form method = "POST">
         <select name="productType" required>
             <?php
