@@ -4,7 +4,7 @@ require_once('Connection.php');
 <!DOCTYPE html>
 <html>
 <title> Registration </title>
-<link rel="stylesheet" href="Login.css" />
+<link rel="stylesheet" href="../css-folder/Login.css" />
 
 <body onload="zoom()">
     <img src="Heravolution.png" alt="Logo" style="width:26%;" class="formatoimmagine"><br>

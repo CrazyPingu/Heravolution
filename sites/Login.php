@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <Title>Login</Title>
-<link rel="stylesheet" href="Login.css" />
+<link rel="stylesheet" href="../css-folder/Login.css" />
 
 <body>
     <form method="post">
@@ -17,31 +17,21 @@
     </form>
     First time entering? <button onclick="window.location.href='Signup.php'" class="bottonelog" style="width:10%">Sign up</button><br><br>
 </body>
+
 <?php
-function redirect($password, $username, $result, $conn)
-{
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            if ($row["username"] == $username && password_verify($password, $row["password"])) {
-                return TRUE;
+    if (isset($_POST["submit"])) {
+        
+        $query = "SELECT fiscalCode, userType, password FROM client WHERE username = '" . $_POST["username"] . "' LIMIT 1 ";
+        $result = $conn->query($query);
+        if ($result -> num_rows > 0) {
+            $row = $result->fetch_assoc();
+            if (password_verify($_POST["password"], $row["password"])) {
+                $_SESSION["fiscalCode"] = $row["fiscalCode"];
+                $_SESSION["rights"] = $row["userType"];
+                header("Location: ClientHome.php");
             }
         }
+        echo "<script>alert('Invalid username or password')</script>";
     }
-    return FALSE;
-}
-if (isset($_POST["submit"])) {
-    
-    $query = "SELECT fiscalCode, userType, password FROM client WHERE username = '" . $_POST["username"] . "' LIMIT 1 ";
-    $result = $conn->query($query);
-    if ($result -> num_rows > 0) {
-        $row = $result->fetch_assoc();
-        if (password_verify($_POST["password"], $row["password"])) {
-            $_SESSION["fiscalCode"] = $row["fiscalCode"];
-            $_SESSION["rights"] = $row["userType"];
-            header("Location: ClientHome.php");
-        }
-    }
-    echo "<script>alert('Invalid username or password')</script>";
-}
 ?>
 </html>
