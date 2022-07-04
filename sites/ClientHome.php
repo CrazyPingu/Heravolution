@@ -64,9 +64,9 @@
             $query = "SELECT COUNT(*) AS counter FROM order_of_product WHERE fiscalCode = '".$_SESSION['fiscalCode']."'";
             $result = $conn -> query($query);
             $row = $result -> fetch_assoc();
-            if ($row['counter'] >= 3 && $row['counter'] < 6) {
+            if ($row['counter'] >= 10 && $row['counter'] < 15) {
                 return 10;
-            } else if ($row['counter'] >= 7) {
+            } else if ($row['counter'] >= 15) {
                 return 20;
             } else {
                 return 0;
