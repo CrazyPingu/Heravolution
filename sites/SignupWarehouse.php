@@ -1,5 +1,8 @@
 <?php 
     require_once("Connection.php");
+    if (is_null($_SESSION["fiscalCode"]) || $_SESSION["rights"] != "warehouse_worker") {
+        header("Location: Login.php");
+    }
 ?>
 <!DOCTYPE html>
 <html>

@@ -1,5 +1,9 @@
 <?php
     require_once("Connection.php");
+    if (is_null($_SESSION["fiscalCode"]) || $_SESSION["rights"] != "driver") {
+        header("Location: Login.php");
+    }
+
 ?>
 
 <!DOCTYPE html>

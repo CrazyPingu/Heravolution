@@ -1,5 +1,8 @@
 <?php
     require_once("Connection.php");
+    if (is_null($_SESSION["fiscalCode"])) {
+        header("Location: Login.php");
+    }
 ?>
 
 <!DOCTYPE html>

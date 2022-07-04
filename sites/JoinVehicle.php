@@ -1,5 +1,8 @@
 <?php
     require_once("Connection.php");
+    if (is_null($_SESSION["fiscalCode"]) || $_SESSION["rights"] != "driver") {
+        header("Location: Login.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +42,7 @@
             $stmt->bind_param("sss", $_SESSION["fiscalCode"], $_POST['vehicle'], date("Y-m-d"));
             $stmt->execute();
             echo "<script>alert('Vehicle successfully added!')</script>";
-            echo "<script>window.location.href='DriverHome.php'</script>";
+            header("Location: DriverHome.php");
         }
     ?>
 </html>
