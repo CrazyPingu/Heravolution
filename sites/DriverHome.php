@@ -10,6 +10,7 @@
 <html>
     <title> Driver Home </title>
     <link rel="stylesheet" href="../css-folder/General.css" />
+    <link rel="icon" href="../images/Heravolution_logo.png">
     <h1> Driver Home </h1>
     
     <?php

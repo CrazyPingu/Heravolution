@@ -10,6 +10,7 @@
     <title> Driver license </title>
     <h1>Add driver license</h1>
     <link rel="stylesheet" href="../css-folder/General.css" />
+    <link rel="icon" href="../images/Heravolution_logo.png">
     <?php
         $query = "SELECT IDOwns from owns where fiscalCode = '". $_SESSION["fiscalCode"] ."'";
         $result = $conn->query($query);

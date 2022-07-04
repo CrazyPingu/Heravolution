@@ -8,6 +8,7 @@
 <html>
     <title> WarehouseWorkerHome </title>
     <link rel="stylesheet" href="../css-folder/General.css" />
+    <link rel="icon" href="../images/Heravolution_logo.png">
     <?php
         $query = "SELECT IDWarehouse from warehouse_worker where fiscalCode = '". $_SESSION["fiscalCode"] ."'";
         $result = $conn->query($query);

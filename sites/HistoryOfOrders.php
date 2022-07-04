@@ -12,6 +12,7 @@
     </head>
     <body>
         <link rel="stylesheet" href="../css-folder/Table.css" />
+        <link rel="icon" href="../images/Heravolution_logo.png">
         <h1>History of Orders</h1>
         <?php
             $query = "SELECT date, address, discountValue, totalPrice, weight, licensePlate FROM order_of_product WHERE fiscalCode = '" . $_SESSION["fiscalCode"] . "' ORDER BY IDOrderOfProduct";

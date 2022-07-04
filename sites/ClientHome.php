@@ -11,6 +11,7 @@
 <head>
     <title>Client Home</title>
     <link rel="stylesheet" href="../css-folder/General.css" />
+    <link rel="icon" href="../images/Heravolution_logo.png">
     <h1>Client page</h1>
     <?php
         if ($_SESSION["rights"] == "driver") {

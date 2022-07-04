@@ -12,6 +12,7 @@
     </head>
     <body>
         <link rel="stylesheet" href="../css-folder/Table.css" />
+        <link rel="icon" href="../images/Heravolution_logo.png">
         <h1>Inventory of the warehouse</h1>
         <?php
             $query = "SELECT address, productType, capacity, price, garbageType FROM warehouse, product 

@@ -8,6 +8,7 @@
 <html>
     <title> Sign in Warehouse </title>
     <link rel=stylesheet href="../css-folder/General.css" />
+    <link rel="icon" href="../images/Heravolution_logo.png">
     <h1> Sign in Warehouse </h1>
     <?php
         $query = "SELECT IDWarehouse from warehouse_worker where fiscalCode = '". $_SESSION["fiscalCode"] ."' LIMIT 1";

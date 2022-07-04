@@ -7,10 +7,10 @@
 <html>
 <Title>Login</Title>
 <link rel="stylesheet" href="../css-folder/Login.css" />
-
+<link rel="icon" href="../images/Heravolution_logo.png">
 <body>
     <form method="post">
-        <img src="Heravolution.png" alt="Logo" style="width:30%;" class="formatoimmagine"><br>
+        <img src="../images/Heravolution.png" alt="Logo" style="width:30%;" class="formatoimmagine"><br>
         Username <input type="text" name="username" style="position:relative;left:30px;" required><br>
         Password <input type="password" name="password" style="position:relative;left:30px;" required><br>
         <input type="submit" name="submit" class="bottonelog" value="Login"></input><br>

@@ -9,6 +9,7 @@
 <html>
     <title> Enter vehicle </title>
     <link rel="stylesheet" href="../css-folder/General.css" />
+    <link rel="icon" href="../images/Heravolution_logo.png">
     <h1> Enter vehicle </h1>
     <?php
         $query = "SELECT IDDrives from drives where fiscalCode = '". $_SESSION["fiscalCode"] ."'";

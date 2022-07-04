@@ -12,6 +12,7 @@
     </head>
     <body>
         <link rel="stylesheet" href="../css-folder/Table.css" />
+        <link rel="icon" href="../images/Heravolution_logo.png">
         <h1>History of driven vehicles</h1>
         <?php
             $query = "SELECT date, drives.licensePlate, loadCapacity, driverLicense, brandName FROM drives, vehicle 

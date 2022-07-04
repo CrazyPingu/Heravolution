@@ -5,9 +5,9 @@ require_once('Connection.php');
 <html>
 <title> Registration </title>
 <link rel="stylesheet" href="../css-folder/Login.css" />
-
+<link rel="icon" href="../images/Heravolution_logo.png">
 <body onload="zoom()">
-    <img src="Heravolution.png" alt="Logo" style="width:26%;" class="formatoimmagine"><br>
+    <img src="../images/Heravolution.png" alt="Logo" style="width:26%;" class="formatoimmagine"><br>
     <form method="POST">
         Name <input type="text" name="name" style="position:relative;left:100px" required><br>
         Surname <input type="text" name="surname" style="position:relative;left:80px" required><br>
