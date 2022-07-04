@@ -5,29 +5,34 @@
 <html>
     <title> Sign in Warehouse </title>
     <?php
-        $query = "SELECT IDWarehouse from warehouse_worker where fiscalCode = '". $_SESSION["fiscalCode"] ."'";
+        $query = "SELECT IDWarehouse from warehouse_worker where fiscalCode = '". $_SESSION["fiscalCode"] ."' LIMIT 1";
         $result = $conn->query($query);
         $data =  $result->fetch_assoc();
         if($data["IDWarehouse"] != null) {
             echo "<input type='button' value='Warehouse Worker Home page' onclick='window.location.href=\"WarehouseWorkerHome.php\"'></input>";
         }
     ?>
+    <br>
+    <h1> Sign in Warehouse </h1>
+    <br>
     <form method="post">
-        <select name="warehouse" required>
+        Warehouse available: <select name="warehouse" required>
             <?php
-                $query = "SELECT IDWarehouse, address FROM warehouse";
+                $query = "SELECT warehouse.IDWarehouse, address FROM warehouse, warehouse_worker 
+                    WHERE warehouse.IDWarehouse != warehouse_worker.IDWarehouse AND fiscalCode = '". $_SESSION["fiscalCode"] ."'";
                 $result = $conn->query($query);
                 while ($row = $result->fetch_assoc()) {
                     echo "<option value=".$row["IDWarehouse"].">".$row["address"]."</option>";
                 }
             ?>
         </select>
+        <br><br>
         <input type="submit" name="submit" value="submit">
         <?php
             if(isset($_POST["submit"])){
                 $query = "UPDATE warehouse_worker SET IDWarehouse = '".$_POST["warehouse"]."' WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'";
                 $conn->query($query);
-                echo "Added to warehouse";
+                echo "<script>alert('Warehouse updated');</script>";
                 header("refresh:2;url=WarehouseWorkerHome.php");
             }
         ?>
