@@ -18,7 +18,7 @@
         }
     ?>
     <input type="button" value="Logout" onclick="window.location.href='Login.php'"></input>
-    <input type="button" value="History of orders" onclick="window.location.href='History.php'"></input><br><br>
+    <input type="button" value="History of orders" onclick="window.location.href='HistoryOfOrders.php'"></input><br><br>
     <form method="POST">
         <h3>Order of products</h3>
         <br>
