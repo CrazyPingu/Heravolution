@@ -9,9 +9,7 @@
     <title>Client Home</title>
     <h1>Client page</h1>
     <?php
-        if ($_SESSION["rights"] == "passenger") {
-            echo "<input type='button' value='Passenger page' onclick='window.location.href=\"PassengerHome.php\"'></input>";
-        } else if ($_SESSION["rights"] == "driver") {
+        if ($_SESSION["rights"] == "driver") {
             echo "<input type='button' value='Driver page' onclick='window.location.href=\"DriverHome.php\"'></input>";
         }else if($_SESSION["rights"] == "warehouse_worker"){
             echo "<input type='button' value='Warehouse Worker page' onclick='window.location.href=\"WarehouseWorkerHome.php\"'></input>";
