@@ -25,6 +25,7 @@
     <input type="button" value="Client page" onclick="window.location.href='ClientHome.php'">
     <input type="button" value="Add license" onclick="window.location.href='SignupLicenseDriver.php'">
     <input type="button" value="Change vehicle" onclick="window.location.href='JoinVehicle.php'">
+    <input type="button" value="History of Orders delivered" onclick="window.location.href='HistoryOrdersDelivered.php'">
 
     <br><br>
     <?php
