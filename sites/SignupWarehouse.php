@@ -38,7 +38,7 @@
                 $query = "UPDATE warehouse_worker SET IDWarehouse = '".$_POST["warehouse"]."' WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'";
                 $conn->query($query);
                 echo "<script>alert('Warehouse updated');</script>";
-                header("refresh:2;url=WarehouseWorkerHome.php");
+                echo "<script>window.location.href='WarehouseWorkerHome.php'</script>";
             }
         ?>
     </form>
