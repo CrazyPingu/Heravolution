@@ -24,7 +24,7 @@
         Warehouse available: <select name="warehouse" required>
             <?php
                 $query = "SELECT warehouse.IDWarehouse, address FROM warehouse, warehouse_worker 
-                    WHERE warehouse.IDWarehouse != warehouse_worker.IDWarehouse AND fiscalCode = '". $_SESSION["fiscalCode"] ."'";
+                    WHERE (warehouse.IDWarehouse != warehouse_worker.IDWarehouse OR warehouse_worker.IDWarehouse IS NULL) AND fiscalCode = '". $_SESSION["fiscalCode"] ."'";
                 $result = $conn->query($query);
                 while ($row = $result->fetch_assoc()) {
                     echo "<option value=".$row["IDWarehouse"].">".$row["address"]."</option>";
