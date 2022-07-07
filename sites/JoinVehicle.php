@@ -23,8 +23,9 @@
     <form method = "POST">
         <select name = "vehicle" required>
             <?php
-                $query = "SELECT vehicle.* FROM vehicle, driver WHERE driver.licensePlate != vehicle.licensePlate AND driverLicense = ANY 
-                (SELECT type from owns where fiscalCode = '". $_SESSION["fiscalCode"] ."')";
+                $query = "SELECT vehicle.* FROM vehicle, driver WHERE (driver.licensePlate != vehicle.licensePlate OR driver.licensePlate IS NULL)
+                    AND driverLicense = ANY 
+                    (SELECT type from owns where fiscalCode = '". $_SESSION["fiscalCode"] ."')";
                 $result = $conn->query($query);
                 while($row = $result->fetch_assoc()) {
                     echo "<option value = '".$row['licensePlate']."'>".$row['licensePlate']." 
