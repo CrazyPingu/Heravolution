@@ -71,6 +71,15 @@
                         | date: ".$data["date"]." | time: ".$data["time"]." ! weight: ".$data["weight"]."</option>";
                 }
             ?>
+        </select><br>
+        <select name = "disposal" required>
+            <?php
+                $query = "SELECT * FROM waste_disposal";
+                $result = $conn->query($query);
+                while($data =  $result->fetch_assoc()) {
+                    echo "<option value='".$data["IDWasteDisposal"]."'>".$data["address"]."</option>";
+                }
+            ?>
         </select>
         <br><br><input type="submit" name="submit2" value="Submit">
     </form>
@@ -82,7 +91,7 @@
             $data =  $result->fetch_assoc();
             return $data["totalWeight"];
         }
-                
+
         if(isset($_POST["submit"])) { //delivery order
             $totalWeight = getWeight($conn, $_POST["order"], "order_of_product", "IDOrderOfProduct");
             if ($loadCapacity >= $totalWeight) {
@@ -93,21 +102,17 @@
             } else {
                 echo "<script>alert('Not enough load capacity!')</script>";
             }
-            
-
         }
         if(isset($_POST["submit2"])) { //pick up garbage
             $totalWeight = getWeight($conn, $_POST["garbage"], "pick_up_garbage", "IDOrderGarbage");
             if ($loadCapacity >= $totalWeight) {
-                $query = "UPDATE pick_up_garbage SET licensePlate = '".$licensePlate."' WHERE IDOrderGarbage IN (".implode(",", $_POST["garbage"]).")";
+                $query = "UPDATE pick_up_garbage SET licensePlate = '".$licensePlate."', IDWasteDisposal = '".$_POST["disposal"]."' WHERE IDOrderGarbage IN (".implode(",", $_POST["garbage"]).")";
                 $result = $conn->query($query);
                 echo "<script>alert('Garbage picked up!')</script>";
                 header("Refresh:0");
             } else {
                 echo "<script>alert('Not enough load capacity!')</script>";
-            }
-            
+            }         
         }
     ?>
-    
 </html>

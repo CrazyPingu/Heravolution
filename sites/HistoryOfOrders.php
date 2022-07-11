@@ -26,7 +26,8 @@
                     $delivered = "yes";
                 }
                 echo "<tr><td>" . $row["date"]. "</td><td>" . $row["address"]. "</td>
-                <td>" . $row["discountValue"]. "</td><td>" . $row["totalPrice"]. "</td><td>".$row["weight"]."</td><td>" . $delivered. "</td></tr>";
+                    <td>" . $row["discountValue"]. "</td><td>" . $row["totalPrice"]. "</td><td>".$row["weight"]."</td>
+                    <td>" . $delivered. "</td></tr>";
             }
             echo "</table>";
         } else {
@@ -35,10 +36,12 @@
         ?>
     <h1>History of garbage orders</h1>
     <?php
-        $query = "SELECT licensePlate, date, address, totalPrice, weight FROM pick_up_garbage WHERE fiscalCode = '" . $_SESSION["fiscalCode"] . "' ORDER BY IDOrderGarbage";
+        $query = "SELECT licensePlate, date, pick_up_garbage.address AS a, totalPrice, weight, waste_disposal.address AS b
+            FROM pick_up_garbage, waste_disposal WHERE fiscalCode = '" . $_SESSION["fiscalCode"] . "' 
+            AND pick_up_garbage.IDWasteDisposal = waste_disposal.IDWasteDisposal ORDER BY IDOrderGarbage ";
         $result = $conn->query($query);
         if ($result->num_rows > 0) {
-            echo "<table><tr><th>Date</th><th>Address</th><th>Total price</th><th>Weight</th><th>Delivered</th></tr>";
+            echo "<table><tr><th>Date</th><th>Address</th><th>Total price</th><th>Weight</th><th>Delivered</th><th>Waste disposal</th></tr>";
             // output data of each row
             while($row = $result->fetch_assoc()) {
                 if (is_null($row["licensePlate"])) {
@@ -46,8 +49,9 @@
                 } else {
                     $delivered = "yes";
                 }
-                echo "<tr><td>" . $row["date"]. "</td><td>" . $row["address"]. "</td>
-                <td>" . $row["totalPrice"]. "</td><td>".$row["weight"]."</td><td>" . $delivered. "</td></tr>";
+                echo "<tr><td>" . $row["date"]. "</td><td>" . $row["a"]. "</td>
+                    <td>" . $row["totalPrice"]. "</td><td>".$row["weight"]."</td>
+                    <td>" . $delivered. "</td><td>" . $row["b"]. "</td></tr>";
             }
             echo "</table>";
         } else {
