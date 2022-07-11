@@ -44,12 +44,13 @@
 
     <br>
     <h3> Deliver order</h3>
-
+    <?php
+    $query = "SELECT IDOrderOfProduct, address, weight FROM order_of_product WHERE licensePlate IS NULL";
+    $result = $conn->query($query);
+    if ($result->num_rows > 0) { ?>
     <form method="post">
         <select name = "order[]" multiple required>
             <?php
-                $query = "SELECT IDOrderOfProduct, address, weight FROM order_of_product WHERE licensePlate IS NULL";
-                $result = $conn->query($query);
                 while($data =  $result->fetch_assoc()) {
                     echo "<option value='".$data["IDOrderOfProduct"]."'>Address: ".$data["address"]." | Weight: ".$data["weight"]."</option>";
                 }
@@ -57,32 +58,38 @@
         </select>
         <br><br><input type="submit" name="submit" value="Submit">
     </form>
-
+    <?php } else {
+        echo "No orders to deliver";
+    } ?>
     <br>
     <h3> Pick up garbage </h3>
-
-    <form method="post">
-        <select name = "garbage[]" multiple required>
-            <?php
-                $query = "SELECT * FROM pick_up_garbage WHERE licensePlate IS NULL";
-                $result = $conn->query($query);
-                while($data =  $result->fetch_assoc()) {
-                    echo "<option value='".$data["IDOrderGarbage"]."'>Address: ".$data["address"]." 
-                        | date: ".$data["date"]." | time: ".$data["time"]." ! weight: ".$data["weight"]."</option>";
-                }
-            ?>
-        </select><br>
-        <select name = "disposal" required>
-            <?php
-                $query = "SELECT * FROM waste_disposal";
-                $result = $conn->query($query);
-                while($data =  $result->fetch_assoc()) {
-                    echo "<option value='".$data["IDWasteDisposal"]."'>".$data["address"]."</option>";
-                }
-            ?>
-        </select>
-        <br><br><input type="submit" name="submit2" value="Submit">
-    </form>
+    <?php 
+    $query = "SELECT * FROM pick_up_garbage WHERE licensePlate IS NULL";
+    $result = $conn->query($query);
+    if($result->num_rows > 0) { ?>
+        <form method="post">
+            <select name = "garbage[]" multiple required>
+                <?php
+                    while($data =  $result->fetch_assoc()) {
+                        echo "<option value='".$data["IDOrderGarbage"]."'>Address: ".$data["address"]." 
+                            | date: ".$data["date"]." | time: ".$data["time"]." ! weight: ".$data["weight"]."</option>";
+                    }
+                ?>
+            </select><br>
+            Waste disposal: <select name = "disposal" required>
+                <?php
+                    $query = "SELECT * FROM waste_disposal";
+                    $result = $conn->query($query);
+                    while($data =  $result->fetch_assoc()) {
+                        echo "<option value='".$data["IDWasteDisposal"]."'>".$data["address"]."</option>";
+                    }
+                ?>
+            </select>
+            <br><br><input type="submit" name="submit2" value="Submit">
+        </form>
+    <?php } else {
+        echo "No garbage to pick up";
+    } ?>
 
     <?php
         function getWeight($conn, $product, $table, $id) {

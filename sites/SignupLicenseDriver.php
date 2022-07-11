@@ -16,15 +16,16 @@
         $result = $conn->query($query);
         $data =  $result->fetch_assoc();
         if($data["IDOwns"] != null) {
-            echo "<input type='button' value='Driver page' onclick='window.location.href=\"DriverHome.php\"'></input>";
+            echo "<input type='button' value='Driver page' onclick='window.location.href=\"DriverHome.php\"'></input><br>";
         }
+        $query = "SELECT type FROM driver_license WHERE type NOT IN
+            (SELECT type FROM owns WHERE fiscalCode = '". $_SESSION["fiscalCode"] ."')";
+        $result = $conn->query($query);
+        if ($result->num_rows > 0) { 
     ?>
     <form method = "POST">
         <select name = "license[]" multiple required>
             <?php
-                $query = "SELECT type FROM driver_license WHERE type NOT IN
-                    (SELECT type FROM owns WHERE fiscalCode = '". $_SESSION["fiscalCode"] ."')";
-                $result = $conn->query($query);
                 if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
                         echo "<option value='" . $row["type"] . "'>type: " . $row["type"] . "</option>";
@@ -35,6 +36,9 @@
         <br><input type = "submit" name = "submit" value = "Submit">
     </form>
     <?php
+        } else {
+            echo "No more licenses available";
+        }
         if (isset($_POST["submit"])) {
             if (empty($_POST['license'])) {
                 echo "<script>alert('You must select at least one license!')</script>";
