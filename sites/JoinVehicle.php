@@ -12,21 +12,25 @@
     <link rel="icon" href="../images/Heravolution_logo.png">
     <h1> Enter vehicle </h1>
     <?php
-        $query = "SELECT IDDrives from drives where fiscalCode = '". $_SESSION["fiscalCode"] ."'";
+        $query = "SELECT licensePlate from driver where fiscalCode = '". $_SESSION["fiscalCode"] ."'";
         $result = $conn->query($query);
         $data =  $result->fetch_assoc();
-        if($data["IDDrives"] != null) {
+        if($data["licensePlate"] != null) {
             echo "<input type='button' value='Driver page' onclick='window.location.href=\"DriverHome.php\"'></input><br><br>";
         }
     ?>
-
+    <input type='button' value='Client page' onclick='window.location.href="ClientHome.php"'></input><br><br>
+    <?php
+        $query = "SELECT vehicle.* FROM vehicle, driver WHERE
+            driverLicense IN
+            (SELECT type from owns where fiscalCode = '". $_SESSION["fiscalCode"] ."')
+            AND vehicle.licensePlate NOT IN (SELECT licensePlate FROM driver WHERE licensePlate IS NOT NULL)
+            GROUP BY vehicle.licensePlate";
+        $result = $conn->query($query);
+        if ($result->num_rows > 0) { ?>
     <form method = "POST">
         <select name = "vehicle" required>
             <?php
-                $query = "SELECT vehicle.* FROM vehicle, driver WHERE (driver.licensePlate != vehicle.licensePlate OR driver.licensePlate IS NULL)
-                    AND driverLicense = ANY 
-                    (SELECT type from owns where fiscalCode = '". $_SESSION["fiscalCode"] ."')";
-                $result = $conn->query($query);
                 while($row = $result->fetch_assoc()) {
                     echo "<option value = '".$row['licensePlate']."'>".$row['licensePlate']." 
                     | brand: ".$row["brandName"]." | load capacity: ".$row["loadCapacity"]." kg | license: ".$row["driverLicense"]."</option>";
@@ -35,8 +39,10 @@
             </select>        
             <br><input type = "submit" name = "submit" value = "Submit">       
     </form>
-
     <?php
+        } else {
+            echo "No vehicles available";
+        }
         if(isset($_POST['submit'])) {
             $query = "UPDATE driver SET licensePlate = '".$_POST['vehicle']."' WHERE fiscalCode = '". $_SESSION["fiscalCode"] ."'";
             $result = $conn->query($query);

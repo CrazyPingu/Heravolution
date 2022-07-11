@@ -20,10 +20,10 @@
         if($data["IDOwns"] == null) {
             echo "<script>window.location.href='SignupLicenseDriver.php'</script>";
         }
-        $query = "SELECT IDDrives from drives where fiscalCode = '". $_SESSION["fiscalCode"] ."'";
+        $query = "SELECT licensePlate from driver where fiscalCode = '". $_SESSION["fiscalCode"] ."'";
         $result = $conn->query($query);
         $data =  $result->fetch_assoc();
-        if($data["IDDrives"] == null) {
+        if($data["licensePlate"] == null) {
             echo "<script>window.location.href='JoinVehicle.php'</script>";
         }
 
@@ -89,9 +89,7 @@
         </form>
     <?php } else {
         echo "No garbage to pick up";
-    } ?>
-
-    <?php
+        }
         function getWeight($conn, $product, $table, $id) {
             $query = "SELECT SUM(weight) as totalWeight FROM ".$table." WHERE ".$id." IN (".implode(",", $product).") LIMIT 1";
             $result = $conn->query($query);
@@ -99,13 +97,19 @@
             return $data["totalWeight"];
         }
 
+        function removeLicensePlate($conn) {
+            $query = "UPDATE driver SET licensePlate = NULL WHERE fiscalCode = '". $_SESSION["fiscalCode"] ."'";
+            $result = $conn->query($query);
+        }
+
         if(isset($_POST["submit"])) { //delivery order
             $totalWeight = getWeight($conn, $_POST["order"], "order_of_product", "IDOrderOfProduct");
             if ($loadCapacity >= $totalWeight) {
                 $query = "UPDATE order_of_product SET licensePlate = '".$licensePlate."' WHERE IDOrderOfProduct IN (".implode(",", $_POST["order"]).")";
                 $result = $conn->query($query);
+                removeLicensePlate($conn);
                 echo "<script>alert('Order delivered!')</script>";
-                header("Refresh:0");
+                header("Location: ClientHome.php");
             } else {
                 echo "<script>alert('Not enough load capacity!')</script>";
             }
@@ -115,8 +119,9 @@
             if ($loadCapacity >= $totalWeight) {
                 $query = "UPDATE pick_up_garbage SET licensePlate = '".$licensePlate."', IDWasteDisposal = '".$_POST["disposal"]."' WHERE IDOrderGarbage IN (".implode(",", $_POST["garbage"]).")";
                 $result = $conn->query($query);
+                removeLicensePlate($conn);
                 echo "<script>alert('Garbage picked up!')</script>";
-                header("Refresh:0");
+                header("Location: ClientHome.php");
             } else {
                 echo "<script>alert('Not enough load capacity!')</script>";
             }         
