@@ -15,7 +15,7 @@
     <h1>History of driven vehicles</h1>
     <?php
         $query = "SELECT date, drives.licensePlate, loadCapacity, driverLicense, brandName FROM drives, vehicle 
-            WHERE fiscalCode = '". $_SESSION["fiscalCode"] ."' AND drives.licensePlate = vehicle.licensePlate";
+            WHERE fiscalCode = '". $_SESSION["fiscalCode"] ."' AND drives.licensePlate = vehicle.licensePlate GROUP BY date, licensePlate";
         $result = $conn->query($query);
         echo "<table><tr><th>Date</th><th>License plate</th><th>Load capacity</th><th>Driver license required</th>
         <th>Brand</th></tr>";
