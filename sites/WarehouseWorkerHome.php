@@ -16,6 +16,7 @@
         if($data["IDWarehouse"] == null) {
             echo "<script>window.location.href='SignupWarehouse.php'</script>";
         }
+        $idwarehouse = $data["IDWarehouse"];
     ?>
     <h1>Warehouse worker home</h1>
     <input type="button" value="Logout" onclick="window.location.href='Login.php'">
@@ -49,14 +50,10 @@
 
     <?php
         if(isset ($_POST["submit"])) {
-            $query = "SELECT IDWarehouse from warehouse_worker where fiscalCode = '". $_SESSION["fiscalCode"] ."'";
-            $result = $conn->query($query);
-            $data =  $result->fetch_assoc();
-
             $query = "INSERT INTO product (price, productType, capacity, garbageType, IDWarehouse) VALUES ";
             for ($i=0; $i < $_POST["quantity"]; $i++) {     
                 $query .= "('".$_POST["price"]."','".$_POST["productType"]."','".$_POST["capacity"]."',
-                '".$_POST["garbageType"]."','". $data["IDWarehouse"]."'),";
+                '".$_POST["garbageType"]."','". $idwarehouse."'),";
             }
             $query = rtrim($query, ",") . ";";
             $result = $conn->query($query);
