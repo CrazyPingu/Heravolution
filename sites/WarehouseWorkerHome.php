@@ -52,7 +52,26 @@
             $query = "SELECT IDWarehouse from warehouse_worker where fiscalCode = '". $_SESSION["fiscalCode"] ."'";
             $result = $conn->query($query);
             $data =  $result->fetch_assoc();
-            for ($i=0; $i < $_POST["quantity"]; $i++) { 
+
+            $query = "INSERT INTO product (price, productType, capacity, garbageType, IDWarehouse) VALUES ";
+            for ($i=0; $i < $_POST["quantity"]; $i++) {     
+                $query .= "('".$l."','".$_SESSION["fiscalCode"]."'),";
+                if($i == 0) {
+                    $first_id = $conn->insert_id;
+                }
+            }
+            $query = rtrim($query, ", ") . ";";
+            $result = $conn->query($query);
+            // * PRODOTTO AGGIUNTO, AGGIUNGO IL PRODOTTO AL MAGAZZINO
+            $query = "INSERT INTO " .$_POST["productType"]. "(IDProduct) VALUES";
+            for ($i=0; $i < $_POST["quantity"]; $i++) {     
+                $query .= "('".$first_id."'),";
+                $first_id++;
+            }
+            $query = rtrim($query, ", ") . ";";
+            $result = $conn->query($query);
+            echo "<script>alert('Product added')</script>";
+            /*for ($i=0; $i < $_POST["quantity"]; $i++) { 
                 $query = "INSERT INTO product (price, productType, capacity, garbageType, IDWarehouse) VALUES (?,?,?,?,?)";
                 $stmt = $conn->prepare($query);
                 $stmt->bind_param("isisi", $_POST["price"], $_POST["productType"], $_POST["capacity"], $_POST["garbageType"], $data["IDWarehouse"]);
@@ -64,7 +83,7 @@
                 $stmt->bind_param("i", $last_id);
                 $stmt->execute();
             }
-            echo "<script>alert('Product added')</script>";
+            echo "<script>alert('Product added')</script>";*/
         }
     ?>
 </html>
