@@ -55,35 +55,22 @@
 
             $query = "INSERT INTO product (price, productType, capacity, garbageType, IDWarehouse) VALUES ";
             for ($i=0; $i < $_POST["quantity"]; $i++) {     
-                $query .= "('".$l."','".$_SESSION["fiscalCode"]."'),";
-                if($i == 0) {
-                    $first_id = $conn->insert_id;
-                }
+                $query .= "('".$_POST["price"]."','".$_POST["productType"]."','".$_POST["capacity"]."',
+                '".$_POST["garbageType"]."','". $data["IDWarehouse"]."'),";
             }
-            $query = rtrim($query, ", ") . ";";
+            $query = rtrim($query, ",") . ";";
             $result = $conn->query($query);
+            $first_id = $conn->insert_id;
             // * PRODOTTO AGGIUNTO, AGGIUNGO IL PRODOTTO AL MAGAZZINO
             $query = "INSERT INTO " .$_POST["productType"]. "(IDProduct) VALUES";
             for ($i=0; $i < $_POST["quantity"]; $i++) {     
+                
                 $query .= "('".$first_id."'),";
                 $first_id++;
             }
             $query = rtrim($query, ", ") . ";";
             $result = $conn->query($query);
             echo "<script>alert('Product added')</script>";
-            /*for ($i=0; $i < $_POST["quantity"]; $i++) { 
-                $query = "INSERT INTO product (price, productType, capacity, garbageType, IDWarehouse) VALUES (?,?,?,?,?)";
-                $stmt = $conn->prepare($query);
-                $stmt->bind_param("isisi", $_POST["price"], $_POST["productType"], $_POST["capacity"], $_POST["garbageType"], $data["IDWarehouse"]);
-                $stmt->execute();
-                // * PRODOTTO AGGIUNTO, AGGIUNGO IL PRODOTTO AL MAGAZZINO
-                $last_id = $conn->insert_id;
-                $query2 = "INSERT INTO " .$_POST["productType"]. "(IDProduct) VALUES (?)";
-                $stmt = $conn->prepare($query2);
-                $stmt->bind_param("i", $last_id);
-                $stmt->execute();
-            }
-            echo "<script>alert('Product added')</script>";*/
         }
     ?>
 </html>
