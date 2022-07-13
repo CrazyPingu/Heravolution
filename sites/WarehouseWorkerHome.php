@@ -27,13 +27,8 @@
     <h2>Add products</h2>
     <form method = "POST">
         <select name="productType" required>
-            <?php
-                $query = "SELECT productType FROM product_type";
-                $result = $conn->query($query);
-                while ($row = $result->fetch_assoc()) {
-                    echo "<option value=".$row["productType"].">".$row["productType"]."</option>";
-                }
-            ?>
+            <option value="container">Container</option>
+            <option value="trashbag">Trashbag</option>
         </select>
         <br>
         <select name="garbageType" required>
