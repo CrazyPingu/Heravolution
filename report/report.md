@@ -146,7 +146,7 @@ Ci aspettiamo di avere un numero elevato e sempre in aumento di _order_ (_pick u
 ### Operazioni principali
 Di seguito sono riportate le tabelle degli accessi per ogni operazione sopra riportata: <br>
 
-<h3> Operazione 1: aggiungere un nuovo cliente </h3>
+<h4> - Operazione 1: aggiungere un nuovo cliente </h4>
 
 | Concetto | Costrutto | Accessi | Tipo |
 |:---------|:---------:|:-------:|:----:|
@@ -155,7 +155,7 @@ Di seguito sono riportate le tabelle degli accessi per ogni operazione sopra rip
 
 totale: 2L + 1S → 80 al giorno
 
-<h3> Operazione 2: aggiungere un nuovo magazziniere </h3>
+<h4> - Operazione 2: aggiungere un nuovo magazziniere </h4>
 
 | Concetto         | Costrutto | Accessi | Tipo |
 |:-----------------|:---------:|:-------:|:----:|
@@ -165,7 +165,7 @@ totale: 2L + 1S → 80 al giorno
 
 totale: 2L + 2S → 30 all'anno
 
-<h3> Operazione 3: aggiungere un nuovo guidatore </h3>
+<h4> - Operazione 3: aggiungere un nuovo guidatore </h4>
 
 | Concetto | Costrutto | Accessi | Tipo |
 |:---------|:---------:|:-------:|:----:|
@@ -175,7 +175,7 @@ totale: 2L + 2S → 30 all'anno
 
 totale: 2L + 2S → 30 all'anno
 
-<h3> Operazione 4: effettuare l'accesso degli utenti </h3>
+<h4> - Operazione 4: effettuare l'accesso degli utenti </h4>
 
 | Concetto | Costrutto | Accessi | Tipo |
 |:---------|:---------:|:-------:|:----:|
@@ -183,7 +183,7 @@ totale: 2L + 2S → 30 all'anno
 
 totale: 1L → 150.000 al giorno
 
-<h3> Operazione 5: effettuare un nuovo ordine di prodotti </h3>
+<h4> - Operazione 5: effettuare un nuovo ordine di prodotti </h4>
 
 | Concetto         | Costrutto | Accessi | Tipo |
 |:-----------------|:---------:|:-------:|:----:|
@@ -194,7 +194,7 @@ totale: 1L → 150.000 al giorno
 
 totale: 4L + 2S → 10.000 al giorno
 
-<h3> Operazione 6: richiedere la raccolta della spazzatura </h3>
+<h4> - Operazione 6: richiedere la raccolta della spazzatura </h4>
 
 | Concetto         | Costrutto | Accessi | Tipo |
 |:-----------------|:---------:|:-------:|:----:|
@@ -206,7 +206,7 @@ totale: 4L + 2S → 10.000 al giorno
 
 totale: 4L + 2S → 5.000 al giorno
 
-<h3> Operazione 7: mostrare la cronologia degli ordini effettuati </h3>
+<h4> - Operazione 7: mostrare la cronologia degli ordini effettuati </h4>
 
 | Concetto         | Costrutto | Accessi | Tipo |
 |:-----------------|:---------:|:-------:|:----:|
@@ -216,7 +216,7 @@ totale: 4L + 2S → 5.000 al giorno
 
 totale: 3L → 3.000 al giorno
 
-<h3> Operazione 8: assegnare un veicolo ad un guidatore </h3>
+<h4> - Operazione 8: assegnare un veicolo ad un guidatore </h4>
 
 | Concetto         | Costrutto | Accessi | Tipo |
 |:-----------------|:---------:|:-------:|:----:|
@@ -228,7 +228,7 @@ totale: 3L → 3.000 al giorno
 
 totale: 5L + 2S → 8.000 al giorno
 
-<h3> Operazione 9: inserire le patenti di un guidatore </h3>
+<h4> - Operazione 9: inserire le patenti di un guidatore </h4>
 
 | Concetto         | Costrutto | Accessi | Tipo |
 |:-----------------|:---------:|:-------:|:----:|
@@ -238,7 +238,7 @@ totale: 5L + 2S → 8.000 al giorno
 
 totale: 3L + 1S → 70 all'anno
 
-<h3> Operazione 10: mostrare la cronologia dei veicoli assegnati </h3>
+<h4> - Operazione 10: mostrare la cronologia dei veicoli assegnati </h4>
 
 | Concetto         | Costrutto | Accessi | Tipo |
 |:-----------------|:---------:|:-------:|:----:|
@@ -247,7 +247,7 @@ totale: 3L + 1S → 70 all'anno
 
 totale: 2L → 100 all'anno
 
-<h3> Operazione 11: consegnare gli ordini effettuati </h3>
+<h4> - Operazione 11: consegnare gli ordini effettuati </h4> 
 
 | Concetto         | Costrutto | Accessi | Tipo |
 |:-----------------|:---------:|:-------:|:----:|
@@ -259,7 +259,7 @@ totale: 2L → 100 all'anno
 
 totale: 4L + 2S → 5.500 al giorno
 
-<h3> Operazione 12: raccogliere la spazzatura e rilasciarla </h3>
+<h4> - Operazione 12: raccogliere la spazzatura e rilasciarla </h4>
 
 | Concetto         | Costrutto | Accessi | Tipo |
 |:-----------------|:---------:|:-------:|:----:|
@@ -272,7 +272,7 @@ totale: 4L + 2S → 5.500 al giorno
 
 totale: 5L + 2S → 2.500 al giorno
 
-<h3> Operazione 13: associare un magazzino ad un magazziniere </h3>
+<h4> - Operazione 13: associare un magazzino ad un magazziniere </h4>
 
 | Concetto         | Costrutto | Accessi | Tipo |
 |:-----------------|:---------:|:-------:|:----:|
@@ -282,7 +282,7 @@ totale: 5L + 2S → 2.500 al giorno
 
 totale: 3L + 1S → 45 all'anno
 
-<h3> Operazione 14: aggiungere un nuovo prodotto al magazzino</h3>
+<h4> - Operazione 14: aggiungere un nuovo prodotto al magazzino</h4>
 
 | Concetto           | Costrutto | Accessi | Tipo |
 |:-------------------|:---------:|:-------:|:----:|
@@ -295,7 +295,7 @@ L'ultima operazione cambia in base a che tipo di prodotto si sta aggiungendo
 
 totale: 2L + 2S → 25.000 al giorno
 
-<h3> Operazione 15: visualizzare l'inventario di tutti i magazzini </h3>
+<h4> - Operazione 15: visualizzare l'inventario di tutti i magazzini </h4>
 
 | Concetto         | Costrutto | Accessi | Tipo |
 |:-----------------|:---------:|:-------:|:----:|
@@ -324,286 +324,424 @@ totale: 1L
 totale: 1L
 
 ## Raffinamento dello schema
+<h4> - Eliminazione delle gerarchie </h4>
+
+È stata eliminata la gerarchia _order_ tramite il collasso verso il basso, replicando gli attributi in _order\_of\_product_ e _pick\_up\_garbage_.<br>
+Per le gerarchie _product_ e _client_ si è scelto di utilizzare un metodo ibrido, utilizzando il collasso verso l'alto, ma mantenendo le entità figlie in quanto alcuni campi proprietari all'entità sono stati mantenuti in esse (ad esempio il campo _licensePlate_ di _driver_ non poteva essere inserito in _client_, oppure il campo _IDOrderGarbage_ di _trashbag_ non poteva essere messo in _product_).
+
+<h4> - Trasformazione di relazioni in entità </h4>
+
+È stata trasformata la relazione _owns_ in un'entità che rappresenta la relazione molti a molti tra _driver_ e _driver\_license_; è stata trasformata anche la relazione _drives_ che ci permette di mantenere lo storico dei veicoli assegnati ai guidatori. 
 
 ## Analisi delle ridondanze
+La prima ridondanza che abbiamo deciso di inserire è il campo _userType_ in client, mantenendo le tabelle _driver_ e _warehouse\_worker_.
+
+Si può vedere come in fase di accesso all'applicazione questo renda l'operazione meno costosa:
+
+| Concetto | Costrutto | Accessi | Tipo |
+|:---------|:---------:|:-------:|:----:|
+| client   | E         | 1       | L    |
+
+totale: 1L → 150.000 al giorno
+
+Senza ridondanza sarebbe necessario controllare ogni entità in base a quanti tipi di utenti esistono.
+
+| Concetto         | Costrutto | Accessi | Tipo |
+|:-----------------|:---------:|:-------:|:----:|
+| client           | E         | 1       | L    |
+| driver           | E         | 1       | L    |
+| warehouse worker | E         | 1       | L    |
+
+totale: 3L → 450.000 al giorno
+
+La seconda ridondanza è presente nell'entità _product_, che contiene il campo _productType_ (stesso caso della ridondanza sopra citata).
 
 ## Traduzione di entità e associazioni in relazioni
 
+|Traduzione tabelle                                                                                                                                                  |
+|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| client (<u>fiscalCode</u>, name, surname, username, password, userType)                                                                                            |
+| driver (<u>fiscalCode</u> : client, licensePlate* : vehicle)                                                                                                       |
+| drives (<u>IDDrives</u>, date, fiscalCode : client, licensePlate : vehicle)                                                                                        |
+| driver_license (<u>type</u>)                                                                                                                                       |
+| owns (<u>IDOwns</u>, type : driver_license, fiscalCode:driver)                                                                                                     |
+| vehicle (<u>licensePlate</u>, loadCapacity, brandName : brand, driverLicense : driver_license)                                                                     |
+| brand (<u>name</u>)                                                                                                                                                |
+| warehouse_worker (<u>fiscalCode</u> : client, IDWarehouse* : warehouse)                                                                                            |
+| warehouse (<u>IDWarehouse</u>, address)                                                                                                                            |
+| product (<u>IDProduct</u>, price, productType, capacity, garbageType : garbage, IDOrder* : order_of_product, IDWarehouse : warehouse)                              |
+| trashbag (<u>IDProduct</u> : product, IDOrderGarbage* : pick_up_garbage)                                                                                           |
+| container (<u>IDProduct</u> : product)                                                                                                                             |
+| garbage (<u> type </u>)                                                                                                                                            |
+| pick_up_garbage (<u>IDOrderGarbage</u>, date, time, address, totalPrice, weight, licensePlate* : vehicle, fiscalCode : client, IDWasteDisposal* : waste_disposal)  |
+| order_of_product (<u>IDOrderOfProduct</u>, date, weight, time, address, discountValue*, totalPrice, fiscalCode : client, licensePlate* : vehicle)                  |
+| waste_disposal (<u>IDWasteDisposal</u>, address)                                                                                                                   |
+
 ## Schema relazione finale
 
-## Traduzione delle operazioni in query SQL
-<!--
-sono tutte da controllare e indentare bene
--->
-### Operazioni principali
-Di seguito sono riportate le tabelle degli accessi per ogni operazione sopra riportata: <br>
+![Logic](./res/logic.png) <br>
 
-<h3> Operazione 1: aggiungere un nuovo cliente </h3>
+## Traduzione delle operazioni in query SQL
+
+### Operazioni principali
+
+Di seguito nelle operazioni effettuate i seguenti valori indicano: <br>
+``` $_POST[] ``` : è l'input dell'utente all'interno delle corrispettive form <br>
+``` $_SESSION[] ``` : è il modo di mantenere in memoria i dati dell'utente che ha effettuato l'accesso <br>
+```$last_id```: è la variabile che contiene l'ultimo _ID_ inserito <br>
+``` get_array() ``` : è una funzione che permette di ottenere l'array contenente i valori richiesti<br>
+``` implode() ``` : permette di spezzare un array per ottenere i valori richiesti<br>
+
+<h4> - Operazione 1: aggiungere un nuovo cliente </h4>
 
 Query per controllare se esiste già un cliente con lo stesso codice fiscale:
 ```sql
-SELECT * FROM client WHERE fiscalCode = '".$_POST["fiscalCode"]."'
+SELECT * 
+FROM client 
+WHERE fiscalCode = '".$_POST["fiscalCode"]."'
 ```
-(``` $_POST[] ``` è il modo di ottenere il dato inserito dall'utente) <br><br>
 Query per controllare se esiste già un cliente con lo stesso username:
 ```sql
-SELECT * FROM client WHERE username = '".$_POST["username"]."'
+SELECT * 
+FROM client 
+WHERE username = '".$_POST["username"]."'
 ```
 Query per inserire il cliente:
 ```sql
-INSERT INTO client(name, surname, fiscalCode, username, password, userType) VALUES (?,?,?,?,?,?)
+INSERT INTO client(name, surname, fiscalCode, username, password, userType) 
+VALUES (?,?,?,?,?,?)
 ```
 
-<h3> Operazione 2: aggiungere un nuovo magazziniere </h3>
+<h4> - Operazione 2: aggiungere un nuovo magazziniere </h4>
 
 Si svolge come l'operazione 1 ma con l'aggiunta della query per inserire il magazziniere:
 ```sql
-INSERT INTO warehouse_worker(fiscalCode) VALUES (?)
+INSERT INTO warehouse_worker(fiscalCode) 
+VALUES (?)
 ```
 
-<h3> Operazione 3: aggiungere un nuovo guidatore </h3>
+<h4> - Operazione 3: aggiungere un nuovo guidatore </h4>
 
 Si svolge come l'operazione 1 ma con l'aggiunta della query per inserire il guidatore:
 ```sql
-INSERT INTO driver(fiscalCode) VALUES (?)
+INSERT INTO driver(fiscalCode) 
+VALUES (?)
 ```
 
-<h3> Operazione 4: effettuare l'accesso degli utenti </h3>
+<h4> - Operazione 4: effettuare l'accesso degli utenti </h4>
 
 ```sql
-SELECT fiscalCode, userType, password FROM client 
-WHERE username = '".$_POST["username"]."' LIMIT 1 
+SELECT fiscalCode, userType, password 
+FROM client 
+WHERE username = '".$_POST["username"]."' 
+LIMIT 1 
 ```
 
-<h3> Operazione 5: effettuare un nuovo ordine di prodotti </h3>
+<h4> - Operazione 5: effettuare un nuovo ordine di prodotti </h4>
 
 Query per visualizzare i prodotti disponibili (per essere acquistabili devono aver il campo _IDOrder_ nullo):
 ```sql
-SELECT * FROM product WHERE IDOrder IS NULL ORDER BY productType
+SELECT * 
+FROM product 
+WHERE IDOrder IS NULL 
+ORDER BY productType
 ```
 Query per ottenere l'eventuale sconto:
 ```sql
-SELECT COUNT(*) AS counter FROM order_of_product WHERE fiscalCode = '".$_SESSION['fiscalCode']."'
+SELECT COUNT(*) AS counter 
+FROM order_of_product 
+WHERE fiscalCode = '".$_SESSION['fiscalCode']."'
 ```
-(``` $_SESSION[] ``` è il modo di mantenere in memoria i dati dell'utente che ha effettuato l'accesso) <br><br>
 Query per ottenere il peso totale dell'ordine:
 ```sql
-SELECT SUM(capacity) AS weight FROM product WHERE IDProduct IN (".get_array($product).")
+SELECT SUM(capacity) AS weight 
+FROM product 
+WHERE IDProduct IN (".get_array($product).")
 ```
-(la funzione ``` get_array() ``` è una funzione che permette di ottenere l'array contenente gli _ID_ dei prodotti acquistati)<br><br>
-
 Query per ottenere il prezzo totale dell'ordine:
 ```sql
-SELECT SUM(price) as totalPrice FROM product WHERE IDProduct IN (".get_array($_POST["product"]).")
+SELECT SUM(price) AS totalPrice 
+FROM product 
+WHERE IDProduct IN (".get_array($_POST["product"]).")
 ```
 Query per inserire l'ordine:
 ```sql
-INSERT INTO order_of_product(date, time, address, discountValue, totalPrice, fiscalCode, weight) VALUES (?, ?, ?, ?, ?, ?, ?)
+INSERT INTO order_of_product(date, time, address, discountValue, totalPrice, fiscalCode, weight) 
+VALUES (?, ?, ?, ?, ?, ?, ?)
 ```
 Query per inserire l'_ID_ dell'ordine ai prodotti:
 ```sql
-UPDATE product SET IDOrder = ".$last_id." WHERE IDProduct IN (".get_array($_POST["product"]).")
+UPDATE product 
+SET IDOrder = ".$last_id." 
+WHERE IDProduct IN (".get_array($_POST["product"]).")
 ```
-(```$last_id``` è la variabile che contiene l'ultimo _ID_ inserito, ovvero quello dell'ordine) <br>
-
-<h3> Operazione 6: richiedere la raccolta della spazzatura </h3>
+<h4> - Operazione 6: richiedere la raccolta della spazzatura </h4>
 
 Query per visualizzare i sacchetti che possono essere raccolti (devono essere stati acquistati da quel cliente e devono avere il campo _IDOrderGarbage_ nullo):
 ```sql
 SELECT product.* FROM product, trashbag 
 WHERE product.productType = 'trashbag' 
-AND trashbag.IDOrderGarbage IS NULL 
-AND product.IDOrder = ANY
-( SELECT IDOrderOfProduct FROM order_of_product 
-  WHERE fiscalcode = '".$_SESSION['fiscalCode']."' 
-  AND licensePlate IS NOT NULL)
-AND product.IDProduct = trashbag.IDProduct
+  AND trashbag.IDOrderGarbage IS NULL 
+  AND product.IDOrder = ANY
+  ( SELECT IDOrderOfProduct FROM order_of_product 
+    WHERE fiscalcode = '".$_SESSION['fiscalCode']."' 
+    AND licensePlate IS NOT NULL)
+  AND product.IDProduct = trashbag.IDProduct
 ```
 Query per ottenere il peso totale dell'ordine:
 ```sql
-SELECT SUM(capacity) AS weight FROM product WHERE IDProduct IN (".get_array($product).")
+SELECT SUM(capacity) AS weight 
+FROM product 
+WHERE IDProduct IN (".get_array($product).")
 ```
 Query per inserire l'ordine:
 ```sql
-INSERT INTO pick_up_garbage(fiscalCode, date, time, address, totalPrice, weight) VALUES (?, ?, ?, ?, ?, ?)
+INSERT INTO pick_up_garbage(fiscalCode, date, time, address, totalPrice, weight) 
+VALUES (?, ?, ?, ?, ?, ?)
 ```
 Query per inserire l'_ID_ dell'ordine ai prodotti:
 ```sql
-UPDATE trashbag SET IDOrderGarbage = ".$last_id." WHERE IDProduct IN (".get_array($_POST["garbage"]).")
+UPDATE trashbag 
+SET IDOrderGarbage = ".$last_id." 
+WHERE IDProduct IN (".get_array($_POST["garbage"]).")
 ```
-
-<h3> Operazione 7: mostrare la cronologia degli ordini effettuati </h3>
+<h4> - Operazione 7: mostrare la cronologia degli ordini effettuati </h4>
 
 Query per visualizzare gli ordini di _order of product_:
 ```sql
-SELECT date, address, discountValue, totalPrice, weight, licensePlate FROM order_of_product WHERE fiscalCode = '".$_SESSION["fiscalCode"]."' ORDER BY IDOrderOfProduct
+SELECT date, address, discountValue, totalPrice, weight, licensePlate 
+FROM order_of_product
+WHERE fiscalCode = '".$_SESSION["fiscalCode"]."' 
+ORDER BY IDOrderOfProduct
 ```
 Query per visualizzare gli ordini di _pick up garbage_:
 ```sql
 SELECT licensePlate, date, pick_up_garbage.address AS a, totalPrice, weight, waste_disposal.address AS b
-FROM pick_up_garbage, waste_disposal WHERE fiscalCode = '".$_SESSION["fiscalCode"]."' 
-AND pick_up_garbage.IDWasteDisposal = waste_disposal.IDWasteDisposal ORDER BY IDOrderGarbage
+FROM pick_up_garbage, waste_disposal 
+WHERE fiscalCode = '".$_SESSION["fiscalCode"]."' 
+  AND pick_up_garbage.IDWasteDisposal = waste_disposal.IDWasteDisposal 
+ORDER BY IDOrderGarbage
 ```
-
-<h3> Operazione 8: assegnare un veicolo ad un guidatore </h3>
+<h4> - Operazione 8: assegnare un veicolo ad un guidatore </h4>
 
 Query per controllare se l'utente ha già un veicolo associato:
 ```sql
-SELECT licensePlate from driver where fiscalCode = '". $_SESSION["fiscalCode"] ."'
+SELECT licensePlate 
+FROM driver 
+WHERE fiscalCode = '". $_SESSION["fiscalCode"] ."'
 ```
 Query per mostrare i veicoli disponibili (per esserlo non devono essere associati a nessun altro guidatore e il guidatore deve avere la patente corrispondente):
 ```sql
-SELECT vehicle.* FROM vehicle, driver WHERE driverLicense IN
-(SELECT type from owns where fiscalCode = '".$_SESSION["fiscalCode"]."')
-AND vehicle.licensePlate NOT IN (SELECT licensePlate FROM driver WHERE licensePlate IS NOT NULL)
+SELECT vehicle.* 
+FROM vehicle, driver 
+WHERE driverLicense IN
+  (SELECT type 
+  FROM owns
+  WHERE fiscalCode = '".$_SESSION["fiscalCode"]."')
+  AND vehicle.licensePlate NOT IN (
+    SELECT licensePlate 
+    FROM driver 
+    WHERE licensePlate IS NOT NULL)
 GROUP BY vehicle.licensePlate
 ```
 Query per inserire il veicolo:
 ```sql
-UPDATE driver SET licensePlate = '".$_POST['vehicle']."' WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
+UPDATE driver 
+SET licensePlate = '".$_POST['vehicle']."' 
+WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
 ```
 Query per inserire la corsa del guidatore sul veicolo:
 ```sql
-INSERT INTO drives(fiscalCode, licensePlate, date) VALUES(?, ?, ?)
+INSERT INTO drives(fiscalCode, licensePlate, date) 
+VALUES(?, ?, ?)
 ```
 
-<h3> Operazione 9: inserire le patenti di un guidatore </h3>
+<h4> - Operazione 9: inserire le patenti di un guidatore </h4>
 
 Query per controllare se l'utente ha già almeno una patente associata:
 ```sql
-SELECT IDOwns from owns where fiscalCode = '".$_SESSION["fiscalCode"]."'
+SELECT IDOwns 
+FROM owns 
+WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
 ```
 Query per mostrare le patenti inseribili (quelle diverse da quelle già associate):
 ```sql
-SELECT type FROM driver_license WHERE type NOT IN
-(SELECT type FROM owns WHERE fiscalCode = '".$_SESSION["fiscalCode"]."')
+SELECT type 
+FROM driver_license 
+WHERE type NOT IN (
+  SELECT type 
+  FROM owns 
+  WHERE fiscalCode = '".$_SESSION["fiscalCode"]."')
 ```
 Query per inserire la patente:
 _per permetterci di effettuare una sola scrittura nel database la query è una stringa a cui vengono concatenati tutti i valori da inserire, l'inizio della query è quello che segue_
 ```sql
-INSERT INTO owns (type, fiscalCode) VALUES
+INSERT INTO owns (type, fiscalCode) 
+VALUES (?, ?)
 ```
-
-<h3> Operazione 10: mostrare la cronologia dei veicoli assegnati </h3>
+<h4> - Operazione 10: mostrare la cronologia dei veicoli assegnati </h4>
 
 ```sql
-SELECT date, drives.licensePlate, loadCapacity, driverLicense, brandName FROM drives, vehicle 
-WHERE fiscalCode = '". $_SESSION["fiscalCode"] ."' AND drives.licensePlate = vehicle.licensePlate 
-GROUP BY date, licensePlate ORDER BY IDDrives
+SELECT date, drives.licensePlate, loadCapacity, driverLicense, brandName 
+FROM drives, vehicle 
+WHERE fiscalCode = '".$_SESSION["fiscalCode"]."' 
+  AND drives.licensePlate = vehicle.licensePlate 
+GROUP BY date, licensePlate 
+ORDER BY IDDrives
 ```
-
-<h3> Operazione 11: consegnare gli ordini effettuati </h3>
+<h4> - Operazione 11: consegnare gli ordini effettuati </h4>
 
 Query per ottenere la _licensePlate_ del veicolo associato al guidatore e la sua _loadCapacity_:
 ```sql
-SELECT driver.licensePlate, loadCapacity FROM driver, vehicle WHERE driver.fiscalCode = '". $_SESSION["fiscalCode"] ."' 
-AND driver.licensePlate = vehicle.licensePlate LIMIT 1
+SELECT driver.licensePlate, loadCapacity 
+FROM driver, vehicle 
+WHERE driver.fiscalCode = '".$_SESSION["fiscalCode"]."' 
+  AND driver.licensePlate = vehicle.licensePlate 
+LIMIT 1
 ```
-
 Query per mostrare gli ordini da consegnare (per esserlo devono avere il campo _licensePlate_ nullo):
 ```sql
-SELECT IDOrderOfProduct, address, weight FROM order_of_product WHERE licensePlate IS NULL
+SELECT IDOrderOfProduct, address, weight 
+FROM order_of_product 
+WHERE licensePlate IS NULL
 ```
 Query per ottenere il peso totale di tutti gli ordini selezionati:
 ```sql
-SELECT SUM(weight) as totalWeight FROM ".$table." WHERE ".$id." IN (".implode(",", $product).") LIMIT 1
+SELECT SUM(weight) as totalWeight 
+FROM ".$table." 
+WHERE ".$id." IN (".implode(",", $product).") 
+LIMIT 1
 ```
-(``` $table ``` è la variabile che contiene il nome della tabella in cui cercare l'ordine, ``` $id ``` è la variabile che contiene l'id dell'ordine che ci interessa, ``` $product ``` è la variabile che contiene l'array degli ordini e il metodo ``` implode() ``` permette di spezzare un array) <br>
+(``` $table ``` è la variabile che contiene il nome della tabella in cui cercare l'ordine, 
+``` $id ``` è la variabile che contiene l'id dell'ordine che ci interessa, 
+``` $product ``` è la variabile che contiene l'array degli ordini) <br>
 
 Query per consegnare gli ordini:
 ```sql
-UPDATE order_of_product SET licensePlate = '".$licensePlate."' WHERE IDOrderOfProduct IN (".implode(",", $_POST["order"]).")
+UPDATE order_of_product 
+SET licensePlate = '".$licensePlate."' 
+WHERE IDOrderOfProduct IN (".implode(",", $_POST["order"]).")
 ```
 Query per togliere il veicolo associato al guidatore:
 ```sql
-UPDATE driver SET licensePlate = NULL WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
+UPDATE driver 
+SET licensePlate = NULL 
+WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
 ```
-
-<h3> Operazione 12: raccogliere la spazzatura e rilasciarla </h3>
+<h4> - Operazione 12: raccogliere la spazzatura e rilasciarla </h4>
 
 Query per ottenere la _licensePlate_ del veicolo associato al guidatore e la sua _loadCapacity_:
 ```sql
-SELECT driver.licensePlate, loadCapacity FROM driver, vehicle WHERE driver.fiscalCode = '". $_SESSION["fiscalCode"] ."' 
-AND driver.licensePlate = vehicle.licensePlate LIMIT 1
+SELECT driver.licensePlate, loadCapacity 
+FROM driver, vehicle  
+WHERE driver.fiscalCode = '". $_SESSION["fiscalCode"] ."' 
+  AND driver.licensePlate = vehicle.licensePlate 
+LIMIT 1
 ```
 Query per mostrare i sacchetti da ritirare (per esserlo devono avere il campo _licensePlate_ nullo):
 ```sql
-SELECT * FROM pick_up_garbage WHERE licensePlate IS NULL
+SELECT * 
+FROM pick_up_garbage 
+WHERE licensePlate IS NULL
 ```
 Query per mostrare le discariche disponibili:
 ```sql
-SELECT * FROM waste_disposal
+SELECT * 
+FROM waste_disposal
 ```
 Query per ottenere il peso totale di tutti gli ordini selezionati:
 ```sql
-SELECT SUM(weight) as totalWeight FROM ".$table." WHERE ".$id." IN (".implode(",", $product).") LIMIT 1
+SELECT SUM(weight) AS totalWeight 
+FROM ".$table." 
+WHERE ".$id." IN (".implode(",", $product).") 
+LIMIT 1
 ```
 Query per raccogliere la spazzatura:
 ```sql
-UPDATE pick_up_garbage SET licensePlate = '".$licensePlate."', IDWasteDisposal = '".$_POST["disposal"]."' WHERE IDOrderGarbage IN (".implode(",", $_POST["garbage"]).")
+UPDATE pick_up_garbage 
+SET licensePlate = '".$licensePlate."', 
+  IDWasteDisposal = '".$_POST["disposal"]."' 
+WHERE IDOrderGarbage IN (".implode(",", $_POST["garbage"]).")
 ```
 Query per togliere il veicolo associato al guidatore:
 ```sql
-UPDATE driver SET licensePlate = NULL WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
+UPDATE driver 
+SET licensePlate = NULL 
+WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
 ```
-
-<h3> Operazione 13: associare un magazzino ad un magazziniere </h3>
+<h4> - Operazione 13: associare un magazzino ad un magazziniere </h4>
 
 Query per controllare se il magazziniere ha già un magazzino associato:
 ```sql
-SELECT IDWarehouse from warehouse_worker where fiscalCode = '".$_SESSION["fiscalCode"]."' LIMIT 1
+SELECT IDWarehouse 
+FROM warehouse_worker 
+WHERE fiscalCode = '".$_SESSION["fiscalCode"]."' 
+LIMIT 1
 ```
 Query per mostrare i magazzini disponibili (tutti tranne quello già associato):
 ```sql
 SELECT warehouse.IDWarehouse, address FROM warehouse, warehouse_worker 
-WHERE (warehouse.IDWarehouse != warehouse_worker.IDWarehouse OR warehouse_worker.IDWarehouse IS NULL) AND fiscalCode = '".$_SESSION["fiscalCode"]."'
+WHERE (warehouse.IDWarehouse != warehouse_worker.IDWarehouse 
+  OR warehouse_worker.IDWarehouse IS NULL) 
+  AND fiscalCode = '".$_SESSION["fiscalCode"]."'
 ```
 Query per associare il magazzino:
 ```sql
-UPDATE warehouse_worker SET IDWarehouse = '".$_POST["warehouse"]."' WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
+UPDATE warehouse_worker 
+SET IDWarehouse = '".$_POST["warehouse"]."' 
+WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
 ```
-
-<h3> Operazione 14: aggiungere un nuovo prodotto al magazzino</h3>
+<h4> - Operazione 14: aggiungere un nuovo prodotto al magazzino </h4>
 
 Query per ottenere l'_ID_ del magazzino associato:
 ```sql
-SELECT IDWarehouse from warehouse_worker where fiscalCode = '".$_SESSION["fiscalCode"]."'
+SELECT IDWarehouse 
+FROM warehouse_worker 
+WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
 ```
 Query per mostrare i tipi di spazzatura:
 ```sql
-SELECT type FROM garbage
+SELECT type 
+FROM garbage
 ```
 Query per aggiungere il prodotto:
 _anche in questo caso per poter effettuare una sola scrittura la query è una stringa con concatenati tutti i valori da aggiungere, la query inizia con quanto segue_
 ```sql
-INSERT INTO product (price, productType, capacity, garbageType, IDWarehouse) VALUES 
+INSERT INTO product (price, productType, capacity, garbageType, IDWarehouse) 
+VALUES 
 ```
 Query per aggiungere il prodotto al magazzino:
 _query realizzata allo stesso modo della precedente, ma in questo caso la query inizia in questo modo_
 ```sql
-INSERT INTO ".$_POST["productType"]."(IDProduct) VALUES
+INSERT INTO ".$_POST["productType"]."(IDProduct) 
+VALUES
 ```
 (``` productType ``` è il nome della tabella a cui aggiungere i prodotti)
-
-<h3> Operazione 15: visualizzare l'inventario di tutti i magazzini </h3>
+<h4> - Operazione 15: visualizzare l'inventario di tutti i magazzini </h4>
 
 ```sql
-SELECT address, productType, capacity, price, garbageType FROM warehouse, product 
-WHERE IDOrder IS NULL AND product.IDWarehouse = warehouse.IDWarehouse ORDER BY warehouse.IDWarehouse
+SELECT address, productType, capacity, price, garbageType 
+FROM warehouse, product 
+WHERE IDOrder IS NULL AND product.IDWarehouse = warehouse.IDWarehouse 
+ORDER BY warehouse.IDWarehouse
 ```
 
 ### Operazioni di controllo
 
-<h3>  Controllo se c'è una patente associata al guidatore </h3> 
+<h4>  - Controllo se c'è una patente associata al guidatore </h4> 
 
 ```sql
-SELECT IDOwns FROM owns WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
+SELECT IDOwns 
+FROM owns 
+WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
 ```
 
-<h3> Controllo se il veicolo è assegnato al guidatore </h3> 
+<h4> - Controllo se il veicolo è assegnato al guidatore </h4> 
 
 ```sql
-SELECT licensePlate FROM driver WHERE fiscalCode = '". $_SESSION["fiscalCode"] ."'
+SELECT licensePlate 
+FROM driver 
+WHERE fiscalCode = '". $_SESSION["fiscalCode"] ."'
 ```
 
 # Progettazione dell'applicazione
