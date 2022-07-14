@@ -105,7 +105,8 @@
         if(isset($_POST["submit"])) { //delivery order
             $totalWeight = getWeight($conn, $_POST["order"], "order_of_product", "IDOrderOfProduct");
             if ($loadCapacity >= $totalWeight) {
-                $query = "UPDATE order_of_product SET licensePlate = '".$licensePlate."' WHERE IDOrderOfProduct IN (".implode(",", $_POST["order"]).")";
+                $query = "UPDATE order_of_product SET licensePlate = '".$licensePlate."' 
+                            WHERE IDOrderOfProduct IN (".implode(",", $_POST["order"]).")";
                 $result = $conn->query($query);
                 removeLicensePlate($conn);
                 echo "<script>alert('Order delivered!')</script>";
@@ -117,7 +118,8 @@
         if(isset($_POST["submit2"])) { //pick up garbage
             $totalWeight = getWeight($conn, $_POST["garbage"], "pick_up_garbage", "IDOrderGarbage");
             if ($loadCapacity >= $totalWeight) {
-                $query = "UPDATE pick_up_garbage SET licensePlate = '".$licensePlate."', IDWasteDisposal = '".$_POST["disposal"]."' WHERE IDOrderGarbage IN (".implode(",", $_POST["garbage"]).")";
+                $query = "UPDATE pick_up_garbage SET licensePlate = '".$licensePlate."', IDWasteDisposal = '".$_POST["disposal"]."' 
+                            WHERE IDOrderGarbage IN (".implode(",", $_POST["garbage"]).")";
                 $result = $conn->query($query);
                 removeLicensePlate($conn);
                 echo "<script>alert('Garbage picked up!')</script>";
