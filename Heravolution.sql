@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Lug 02, 2022 alle 19:44
+-- Creato il: Lug 14, 2022 alle 17:00
 -- Versione del server: 10.5.15-MariaDB-0+deb11u1
 -- Versione PHP: 8.1.7
 
@@ -56,17 +56,6 @@ CREATE TABLE `client` (
   `userType` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dump dei dati per la tabella `client`
---
-
-INSERT INTO `client` (`fiscalCode`, `name`, `surname`, `username`, `password`, `userType`) VALUES
-('ZCCCST01S56A052F', 'Client', 'One', 'Client1', '$2y$10$GRp2yOzrcLIj1Vi/w01c7uFkT3Dfqd9svg1yl8Q/TcQYwGcDf0ovG', 'client'),
-('ZCCCST01S56A052G', 'Client', 'Two', 'Client2', '$2y$10$YfKT8ggOhujQR/nVs0H0XOj8ouunmqiCsxmWnDMl8aVpcKOnOb/36', 'client'),
-('ZCCCST01S56A052H', 'Driver', 'One', 'Driver1', '$2y$10$soMudqZ7D1.9uJOoa6i1.uTk/XMPEBgdM7IFREMdBEUT8Scn4cNJO', 'driver'),
-('ZCCCST01S56A052L', 'Worker', 'One', 'Worker1', '$2y$10$ItoemH64U8Us2ukzHPb86.iDCVD4HK5np850tPlLOVOrciTYdI7sa', 'warehouse_worker'),
-('ZCCCST01S56A052M', 'Worker', 'Two', 'Worker2', '$2y$10$0A5L1r1WT9vOlEhp2c0XV.mAfY6drbrk7DN6FrxNw2Ov.GymzLGxm', 'warehouse_worker');
-
 -- --------------------------------------------------------
 
 --
@@ -76,19 +65,6 @@ INSERT INTO `client` (`fiscalCode`, `name`, `surname`, `username`, `password`, `
 CREATE TABLE `container` (
   `IDProduct` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `container`
---
-
-INSERT INTO `container` (`IDProduct`) VALUES
-(52),
-(53),
-(61),
-(62),
-(63),
-(64),
-(65);
 
 -- --------------------------------------------------------
 
@@ -100,13 +76,6 @@ CREATE TABLE `driver` (
   `fiscalCode` char(16) NOT NULL,
   `licensePlate` varchar(7) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `driver`
---
-
-INSERT INTO `driver` (`fiscalCode`, `licensePlate`) VALUES
-('ZCCCST01S56A052H', 'CC222DD');
 
 -- --------------------------------------------------------
 
@@ -139,13 +108,6 @@ CREATE TABLE `drives` (
   `fiscalCode` varchar(16) NOT NULL,
   `licensePlate` varchar(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `drives`
---
-
-INSERT INTO `drives` (`IDDrives`, `date`, `fiscalCode`, `licensePlate`) VALUES
-(5, '2022-07-02', 'ZCCCST01S56A052H', 'CC222DD');
 
 -- --------------------------------------------------------
 
@@ -187,18 +149,6 @@ CREATE TABLE `order_of_product` (
   `licensePlate` varchar(7) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dump dei dati per la tabella `order_of_product`
---
-
-INSERT INTO `order_of_product` (`IDOrderOfProduct`, `date`, `weight`, `time`, `address`, `discountValue`, `totalPrice`, `fiscalCode`, `licensePlate`) VALUES
-(20, '2022-07-02', 7, '18-26', 'z', 0, 6, 'ZCCCST01S56A052H', NULL),
-(21, '2022-07-02', 8, '18-29', 'a', 0, 4, 'ZCCCST01S56A052H', NULL),
-(22, '2022-07-02', 8, '19-05', 'a', 0, 8, 'ZCCCST01S56A052H', NULL),
-(23, '2022-07-02', 10, '19-16', 'c', 10, 7, 'ZCCCST01S56A052H', NULL),
-(24, '2022-07-02', 23, '19-23', 'b', 0, 16, 'ZCCCST01S56A052L', NULL),
-(25, '2022-07-02', 10, '19-24', 'a', 10, 4, 'ZCCCST01S56A052H', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -210,14 +160,6 @@ CREATE TABLE `owns` (
   `type` varchar(255) NOT NULL,
   `fiscalCode` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `owns`
---
-
-INSERT INTO `owns` (`IDOwns`, `type`, `fiscalCode`) VALUES
-(5, 'C1', 'ZCCCST01S56A052H'),
-(6, 'B', 'ZCCCST01S56A052H');
 
 -- --------------------------------------------------------
 
@@ -233,7 +175,8 @@ CREATE TABLE `pick_up_garbage` (
   `time` varchar(5) NOT NULL,
   `address` varchar(255) NOT NULL,
   `totalPrice` int(11) NOT NULL,
-  `weight` int(11) NOT NULL
+  `weight` int(11) NOT NULL,
+  `IDWasteDisposal` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -252,59 +195,6 @@ CREATE TABLE `product` (
   `IDWarehouse` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dump dei dati per la tabella `product`
---
-
-INSERT INTO `product` (`IDProduct`, `price`, `productType`, `capacity`, `garbageType`, `IDOrder`, `IDWarehouse`) VALUES
-(52, 4, 'container', 3, 'Battery', 20, 1),
-(53, 4, 'container', 3, 'Battery', 22, 1),
-(54, 2, 'trashbag', 4, 'Undifferentiated', 20, 1),
-(55, 2, 'trashbag', 4, 'Undifferentiated', 21, 1),
-(56, 2, 'trashbag', 4, 'Undifferentiated', 21, 1),
-(57, 4, 'trashbag', 5, 'Glass', 22, 1),
-(58, 4, 'trashbag', 5, 'Glass', 23, 1),
-(59, 4, 'trashbag', 5, 'Glass', 23, 1),
-(60, 4, 'trashbag', 5, 'Glass', NULL, 1),
-(61, 5, 'container', 10, 'Organic', 25, 1),
-(62, 5, 'container', 10, 'Organic', 24, 1),
-(63, 5, 'container', 10, 'Organic', 24, 1),
-(64, 5, 'container', 10, 'Organic', NULL, 1),
-(65, 5, 'container', 10, 'Organic', NULL, 1),
-(66, 6, 'trashbag', 3, 'Paper', 24, 1),
-(67, 6, 'trashbag', 3, 'Paper', NULL, 1),
-(68, 6, 'trashbag', 3, 'Paper', NULL, 1);
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `product_type`
---
-
-CREATE TABLE `product_type` (
-  `productType` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `product_type`
---
-
-INSERT INTO `product_type` (`productType`) VALUES
-('container'),
-('trashbag');
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `releaseLoad`
---
-
-CREATE TABLE `releaseLoad` (
-  `IDRelease` int(11) NOT NULL,
-  `IDWasteDisposal` int(11) NOT NULL,
-  `licensePlate` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 -- --------------------------------------------------------
 
 --
@@ -315,22 +205,6 @@ CREATE TABLE `trashbag` (
   `IDProduct` int(11) NOT NULL,
   `IDOrderGarbage` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dump dei dati per la tabella `trashbag`
---
-
-INSERT INTO `trashbag` (`IDProduct`, `IDOrderGarbage`) VALUES
-(54, NULL),
-(55, NULL),
-(56, NULL),
-(57, NULL),
-(58, NULL),
-(59, NULL),
-(60, NULL),
-(66, NULL),
-(67, NULL),
-(68, NULL);
 
 -- --------------------------------------------------------
 
@@ -350,10 +224,13 @@ CREATE TABLE `vehicle` (
 --
 
 INSERT INTO `vehicle` (`licensePlate`, `loadCapacity`, `brandName`, `driverLicense`) VALUES
-('AA111BB', 25, 'Dacia', 'B'),
-('CC222DD', 15, 'Mercedes', 'C1'),
-('EE333FF', 30, 'Opel', 'C'),
-('GG444HH', 10, 'Lancia', 'B');
+('AA111BB', 50, 'Dacia', 'B'),
+('CC222DD', 55, 'Opel', 'B'),
+('EE333FF', 45, 'Lancia', 'B'),
+('GG444HH', 40, 'Mercedes', 'C'),
+('II555JJ', 35, 'Dacia', 'C'),
+('KK66LL', 65, 'Lancia', 'C1'),
+('MM77NN', 54, 'Opel', 'C1');
 
 -- --------------------------------------------------------
 
@@ -386,14 +263,6 @@ CREATE TABLE `warehouse_worker` (
   `IDWarehouse` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dump dei dati per la tabella `warehouse_worker`
---
-
-INSERT INTO `warehouse_worker` (`fiscalCode`, `IDWarehouse`) VALUES
-('ZCCCST01S56A052L', 1),
-('ZCCCST01S56A052M', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -402,21 +271,20 @@ INSERT INTO `warehouse_worker` (`fiscalCode`, `IDWarehouse`) VALUES
 
 CREATE TABLE `waste_disposal` (
   `IDWasteDisposal` int(11) NOT NULL,
-  `address` varchar(255) NOT NULL,
-  `typeGarbage` varchar(255) NOT NULL
+  `address` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dump dei dati per la tabella `waste_disposal`
 --
 
-INSERT INTO `waste_disposal` (`IDWasteDisposal`, `address`, `typeGarbage`) VALUES
-(1, 'Oxford Street 10', 'Battery'),
-(2, 'Abbey Road 22', 'Glass'),
-(3, 'Royal Mile 16', 'Organic'),
-(4, 'Princes Street 12', 'Paper'),
-(5, 'Brick Lane 9', 'Plastic'),
-(6, 'Carnaby Street 78', 'Undifferentiated');
+INSERT INTO `waste_disposal` (`IDWasteDisposal`, `address`) VALUES
+(1, 'Oxford Street 10'),
+(2, 'Abbey Road 22'),
+(3, 'Royal Mile 16'),
+(4, 'Princes Street 12'),
+(5, 'Brick Lane 9'),
+(6, 'Carnaby Street 78');
 
 --
 -- Indici per le tabelle scaricate
@@ -489,7 +357,8 @@ ALTER TABLE `owns`
 ALTER TABLE `pick_up_garbage`
   ADD PRIMARY KEY (`IDOrderGarbage`),
   ADD KEY `LIcensePlate` (`lIcensePlate`),
-  ADD KEY `FiscalCode` (`fiscalCode`);
+  ADD KEY `FiscalCode` (`fiscalCode`),
+  ADD KEY `IDWasteDisposal` (`IDWasteDisposal`);
 
 --
 -- Indici per le tabelle `product`
@@ -498,22 +367,7 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`IDProduct`),
   ADD KEY `type` (`garbageType`),
   ADD KEY `IDOrder` (`IDOrder`),
-  ADD KEY `IDWarehouse` (`IDWarehouse`),
-  ADD KEY `productType` (`productType`);
-
---
--- Indici per le tabelle `product_type`
---
-ALTER TABLE `product_type`
-  ADD PRIMARY KEY (`productType`);
-
---
--- Indici per le tabelle `releaseLoad`
---
-ALTER TABLE `releaseLoad`
-  ADD PRIMARY KEY (`IDRelease`) USING BTREE,
-  ADD KEY `LicensePlate` (`licensePlate`),
-  ADD KEY `IDWasteDisposal` (`IDWasteDisposal`);
+  ADD KEY `IDWarehouse` (`IDWarehouse`);
 
 --
 -- Indici per le tabelle `trashbag`
@@ -547,8 +401,7 @@ ALTER TABLE `warehouse_worker`
 -- Indici per le tabelle `waste_disposal`
 --
 ALTER TABLE `waste_disposal`
-  ADD PRIMARY KEY (`IDWasteDisposal`),
-  ADD KEY `TypeGarbage` (`typeGarbage`);
+  ADD PRIMARY KEY (`IDWasteDisposal`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -558,37 +411,31 @@ ALTER TABLE `waste_disposal`
 -- AUTO_INCREMENT per la tabella `drives`
 --
 ALTER TABLE `drives`
-  MODIFY `IDDrives` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IDDrives` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `order_of_product`
 --
 ALTER TABLE `order_of_product`
-  MODIFY `IDOrderOfProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `IDOrderOfProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `owns`
 --
 ALTER TABLE `owns`
-  MODIFY `IDOwns` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `IDOwns` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT per la tabella `pick_up_garbage`
 --
 ALTER TABLE `pick_up_garbage`
-  MODIFY `IDOrderGarbage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDOrderGarbage` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `product`
 --
 ALTER TABLE `product`
-  MODIFY `IDProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
-
---
--- AUTO_INCREMENT per la tabella `releaseLoad`
---
-ALTER TABLE `releaseLoad`
-  MODIFY `IDRelease` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDProduct` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT per la tabella `warehouse`
@@ -616,8 +463,8 @@ ALTER TABLE `container`
 -- Limiti per la tabella `driver`
 --
 ALTER TABLE `driver`
-  ADD CONSTRAINT `driver_ibfk_1` FOREIGN KEY (`licensePlate`) REFERENCES `vehicle` (`licensePlate`),
-  ADD CONSTRAINT `driver_ibfk_2` FOREIGN KEY (`fiscalCode`) REFERENCES `client` (`fiscalCode`);
+  ADD CONSTRAINT `driver_ibfk_2` FOREIGN KEY (`fiscalCode`) REFERENCES `client` (`fiscalCode`),
+  ADD CONSTRAINT `driver_ibfk_3` FOREIGN KEY (`licensePlate`) REFERENCES `vehicle` (`licensePlate`);
 
 --
 -- Limiti per la tabella `drives`
@@ -645,7 +492,8 @@ ALTER TABLE `owns`
 --
 ALTER TABLE `pick_up_garbage`
   ADD CONSTRAINT `pick_up_garbage_ibfk_1` FOREIGN KEY (`lIcensePlate`) REFERENCES `vehicle` (`licensePlate`),
-  ADD CONSTRAINT `pick_up_garbage_ibfk_2` FOREIGN KEY (`fiscalCode`) REFERENCES `client` (`fiscalCode`);
+  ADD CONSTRAINT `pick_up_garbage_ibfk_2` FOREIGN KEY (`fiscalCode`) REFERENCES `client` (`fiscalCode`),
+  ADD CONSTRAINT `pick_up_garbage_ibfk_3` FOREIGN KEY (`IDWasteDisposal`) REFERENCES `waste_disposal` (`IDWasteDisposal`);
 
 --
 -- Limiti per la tabella `product`
@@ -653,15 +501,7 @@ ALTER TABLE `pick_up_garbage`
 ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`garbageType`) REFERENCES `garbage` (`type`),
   ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`IDOrder`) REFERENCES `order_of_product` (`IDOrderOfProduct`),
-  ADD CONSTRAINT `product_ibfk_3` FOREIGN KEY (`IDWarehouse`) REFERENCES `warehouse` (`IDWarehouse`),
-  ADD CONSTRAINT `product_ibfk_4` FOREIGN KEY (`productType`) REFERENCES `product_type` (`productType`);
-
---
--- Limiti per la tabella `releaseLoad`
---
-ALTER TABLE `releaseLoad`
-  ADD CONSTRAINT `releaseLoad_ibfk_1` FOREIGN KEY (`licensePlate`) REFERENCES `vehicle` (`licensePlate`),
-  ADD CONSTRAINT `releaseLoad_ibfk_2` FOREIGN KEY (`IDWasteDisposal`) REFERENCES `waste_disposal` (`IDWasteDisposal`);
+  ADD CONSTRAINT `product_ibfk_3` FOREIGN KEY (`IDWarehouse`) REFERENCES `warehouse` (`IDWarehouse`);
 
 --
 -- Limiti per la tabella `trashbag`
@@ -683,12 +523,6 @@ ALTER TABLE `vehicle`
 ALTER TABLE `warehouse_worker`
   ADD CONSTRAINT `warehouse_worker_ibfk_1` FOREIGN KEY (`IDWarehouse`) REFERENCES `warehouse` (`IDWarehouse`),
   ADD CONSTRAINT `warehouse_worker_ibfk_2` FOREIGN KEY (`fiscalCode`) REFERENCES `client` (`fiscalCode`);
-
---
--- Limiti per la tabella `waste_disposal`
---
-ALTER TABLE `waste_disposal`
-  ADD CONSTRAINT `waste_disposal_ibfk_1` FOREIGN KEY (`typeGarbage`) REFERENCES `garbage` (`type`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
