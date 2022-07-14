@@ -20,12 +20,15 @@
   - [Stima del volume dei dati](#stima-del-volume-dei-dati)
   - [Descrizione delle operazioni principali e stima delle loro frequenze](#descrizione-delle-operazioni-principali-e-stima-delle-loro-frequenze)
   - [Schemi di navigazione e tabelle degli accessi](#schemi-di-navigazione-e-tabelle-degli-accessi)
-  - [Operazioni di controllo](#operazioni-di-controllo)
+    - [Operazioni principali](#operazioni-principali)
+    - [Operazioni di controllo](#operazioni-di-controllo)
   - [Raffinamento dello schema](#raffinamento-dello-schema)
   - [Analisi delle ridondanze](#analisi-delle-ridondanze)
   - [Traduzione di entità e associazioni in relazioni](#traduzione-di-entità-e-associazioni-in-relazioni)
   - [Schema relazione finale](#schema-relazione-finale)
   - [Traduzione delle operazioni in query SQL](#traduzione-delle-operazioni-in-query-sql)
+    - [Operazioni principali](#operazioni-principali-1)
+    - [Operazioni di controllo](#operazioni-di-controllo-1)
 - [Progettazione dell'applicazione](#progettazione-dellapplicazione)
   - [Descrizione dell'architettura dell'applicazione realizzata](#descrizione-dellarchitettura-dellapplicazione-realizzata)
 
@@ -89,6 +92,7 @@ Esistono due tipi di ordini: _pick up garbage_ e _order of product_ che sono la 
 Ogni _pick up garbage_ è poi rilasciato in una _waste disposal_. <br>
 Ad ogni _order of product_ sono associati i prodotti acquistati, mentre ad un _pick up garbage_ sono associati i _trashbag_ da ritirare. <br>
 Ad ogni _product_ quando viene acquistato viene associato l'_order of product_ e/o il _pick up garbage_ corrispondente. <br>
+Dopo una certa quantità di ordini il cliente ha uno sconto, memorizzato nel campo _discont_ della tabella _order of product_. <br>
 
 ## Schema finale
 ![Conceptual ER](./res/conceptual.png) <br>
@@ -139,6 +143,7 @@ Ci aspettiamo di avere un numero elevato e sempre in aumento di _order_ (_pick u
 | 15     |visualizzare l'inventario di tutti i magazzini| 2 alla settimana  |
 
 ## Schemi di navigazione e tabelle degli accessi
+### Operazioni principali
 Di seguito sono riportate le tabelle degli accessi per ogni operazione sopra riportata: <br>
 
 <h3> Operazione 1: aggiungere un nuovo cliente </h3>
@@ -299,7 +304,7 @@ totale: 2L + 2S → 25.000 al giorno
 
 totale: 2L → 2 alla settimana
 
-## Operazioni di controllo
+### Operazioni di controllo
 Le sequenti operazioni vengono eseguite ogni volta che un guidatore vuole rispondere ad un ordine.
 
 <h3>  Controllo se c'è una patente associata al guidatore </h3> 
@@ -327,6 +332,279 @@ totale: 1L
 ## Schema relazione finale
 
 ## Traduzione delle operazioni in query SQL
+<!--
+sono tutte da controllare e indentare bene
+-->
+### Operazioni principali
+Di seguito sono riportate le tabelle degli accessi per ogni operazione sopra riportata: <br>
+
+<h3> Operazione 1: aggiungere un nuovo cliente </h3>
+
+Query per controllare se esiste già un cliente con lo stesso codice fiscale:
+```sql
+SELECT * FROM client WHERE fiscalCode = '".$_POST["fiscalCode"]."'
+```
+(``` $_POST[] ``` è il modo di ottenere il dato inserito dall'utente) <br><br>
+Query per controllare se esiste già un cliente con lo stesso username:
+```sql
+SELECT * FROM client WHERE username = '".$_POST["username"]."'
+```
+Query per inserire il cliente:
+```sql
+INSERT INTO client(name, surname, fiscalCode, username, password, userType) VALUES (?,?,?,?,?,?)
+```
+
+<h3> Operazione 2: aggiungere un nuovo magazziniere </h3>
+
+Si svolge come l'operazione 1 ma con l'aggiunta della query per inserire il magazziniere:
+```sql
+INSERT INTO warehouse_worker(fiscalCode) VALUES (?)
+```
+
+<h3> Operazione 3: aggiungere un nuovo guidatore </h3>
+
+Si svolge come l'operazione 1 ma con l'aggiunta della query per inserire il guidatore:
+```sql
+INSERT INTO driver(fiscalCode) VALUES (?)
+```
+
+<h3> Operazione 4: effettuare l'accesso degli utenti </h3>
+
+```sql
+SELECT fiscalCode, userType, password FROM client 
+WHERE username = '".$_POST["username"]."' LIMIT 1 
+```
+
+<h3> Operazione 5: effettuare un nuovo ordine di prodotti </h3>
+
+Query per visualizzare i prodotti disponibili (per essere acquistabili devono aver il campo _IDOrder_ nullo):
+```sql
+SELECT * FROM product WHERE IDOrder IS NULL ORDER BY productType
+```
+Query per ottenere l'eventuale sconto:
+```sql
+SELECT COUNT(*) AS counter FROM order_of_product WHERE fiscalCode = '".$_SESSION['fiscalCode']."'
+```
+(``` $_SESSION[] ``` è il modo di mantenere in memoria i dati dell'utente che ha effettuato l'accesso) <br><br>
+Query per ottenere il peso totale dell'ordine:
+```sql
+SELECT SUM(capacity) AS weight FROM product WHERE IDProduct IN (".get_array($product).")
+```
+(la funzione ``` get_array() ``` è una funzione che permette di ottenere l'array contenente gli _ID_ dei prodotti acquistati)<br><br>
+
+Query per ottenere il prezzo totale dell'ordine:
+```sql
+SELECT SUM(price) as totalPrice FROM product WHERE IDProduct IN (".get_array($_POST["product"]).")
+```
+Query per inserire l'ordine:
+```sql
+INSERT INTO order_of_product(date, time, address, discountValue, totalPrice, fiscalCode, weight) VALUES (?, ?, ?, ?, ?, ?, ?)
+```
+Query per inserire l'_ID_ dell'ordine ai prodotti:
+```sql
+UPDATE product SET IDOrder = ".$last_id." WHERE IDProduct IN (".get_array($_POST["product"]).")
+```
+(```$last_id``` è la variabile che contiene l'ultimo _ID_ inserito, ovvero quello dell'ordine) <br>
+
+<h3> Operazione 6: richiedere la raccolta della spazzatura </h3>
+
+Query per visualizzare i sacchetti che possono essere raccolti (devono essere stati acquistati da quel cliente e devono avere il campo _IDOrderGarbage_ nullo):
+```sql
+SELECT product.* FROM product, trashbag 
+WHERE product.productType = 'trashbag' 
+AND trashbag.IDOrderGarbage IS NULL 
+AND product.IDOrder = ANY
+( SELECT IDOrderOfProduct FROM order_of_product 
+  WHERE fiscalcode = '".$_SESSION['fiscalCode']."' 
+  AND licensePlate IS NOT NULL)
+AND product.IDProduct = trashbag.IDProduct
+```
+Query per ottenere il peso totale dell'ordine:
+```sql
+SELECT SUM(capacity) AS weight FROM product WHERE IDProduct IN (".get_array($product).")
+```
+Query per inserire l'ordine:
+```sql
+INSERT INTO pick_up_garbage(fiscalCode, date, time, address, totalPrice, weight) VALUES (?, ?, ?, ?, ?, ?)
+```
+Query per inserire l'_ID_ dell'ordine ai prodotti:
+```sql
+UPDATE trashbag SET IDOrderGarbage = ".$last_id." WHERE IDProduct IN (".get_array($_POST["garbage"]).")
+```
+
+<h3> Operazione 7: mostrare la cronologia degli ordini effettuati </h3>
+
+Query per visualizzare gli ordini di _order of product_:
+```sql
+SELECT date, address, discountValue, totalPrice, weight, licensePlate FROM order_of_product WHERE fiscalCode = '".$_SESSION["fiscalCode"]."' ORDER BY IDOrderOfProduct
+```
+Query per visualizzare gli ordini di _pick up garbage_:
+```sql
+SELECT licensePlate, date, pick_up_garbage.address AS a, totalPrice, weight, waste_disposal.address AS b
+FROM pick_up_garbage, waste_disposal WHERE fiscalCode = '".$_SESSION["fiscalCode"]."' 
+AND pick_up_garbage.IDWasteDisposal = waste_disposal.IDWasteDisposal ORDER BY IDOrderGarbage
+```
+
+<h3> Operazione 8: assegnare un veicolo ad un guidatore </h3>
+
+Query per controllare se l'utente ha già un veicolo associato:
+```sql
+SELECT licensePlate from driver where fiscalCode = '". $_SESSION["fiscalCode"] ."'
+```
+Query per mostrare i veicoli disponibili (per esserlo non devono essere associati a nessun altro guidatore e il guidatore deve avere la patente corrispondente):
+```sql
+SELECT vehicle.* FROM vehicle, driver WHERE driverLicense IN
+(SELECT type from owns where fiscalCode = '".$_SESSION["fiscalCode"]."')
+AND vehicle.licensePlate NOT IN (SELECT licensePlate FROM driver WHERE licensePlate IS NOT NULL)
+GROUP BY vehicle.licensePlate
+```
+Query per inserire il veicolo:
+```sql
+UPDATE driver SET licensePlate = '".$_POST['vehicle']."' WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
+```
+Query per inserire la corsa del guidatore sul veicolo:
+```sql
+INSERT INTO drives(fiscalCode, licensePlate, date) VALUES(?, ?, ?)
+```
+
+<h3> Operazione 9: inserire le patenti di un guidatore </h3>
+
+Query per controllare se l'utente ha già almeno una patente associata:
+```sql
+SELECT IDOwns from owns where fiscalCode = '".$_SESSION["fiscalCode"]."'
+```
+Query per mostrare le patenti inseribili (quelle diverse da quelle già associate):
+```sql
+SELECT type FROM driver_license WHERE type NOT IN
+(SELECT type FROM owns WHERE fiscalCode = '".$_SESSION["fiscalCode"]."')
+```
+Query per inserire la patente:
+_per permetterci di effettuare una sola scrittura nel database la query è una stringa a cui vengono concatenati tutti i valori da inserire, l'inizio della query è quello che segue_
+```sql
+INSERT INTO owns (type, fiscalCode) VALUES
+```
+
+<h3> Operazione 10: mostrare la cronologia dei veicoli assegnati </h3>
+
+```sql
+SELECT date, drives.licensePlate, loadCapacity, driverLicense, brandName FROM drives, vehicle 
+WHERE fiscalCode = '". $_SESSION["fiscalCode"] ."' AND drives.licensePlate = vehicle.licensePlate 
+GROUP BY date, licensePlate ORDER BY IDDrives
+```
+
+<h3> Operazione 11: consegnare gli ordini effettuati </h3>
+
+Query per ottenere la _licensePlate_ del veicolo associato al guidatore e la sua _loadCapacity_:
+```sql
+SELECT driver.licensePlate, loadCapacity FROM driver, vehicle WHERE driver.fiscalCode = '". $_SESSION["fiscalCode"] ."' 
+AND driver.licensePlate = vehicle.licensePlate LIMIT 1
+```
+
+Query per mostrare gli ordini da consegnare (per esserlo devono avere il campo _licensePlate_ nullo):
+```sql
+SELECT IDOrderOfProduct, address, weight FROM order_of_product WHERE licensePlate IS NULL
+```
+Query per ottenere il peso totale di tutti gli ordini selezionati:
+```sql
+SELECT SUM(weight) as totalWeight FROM ".$table." WHERE ".$id." IN (".implode(",", $product).") LIMIT 1
+```
+(``` $table ``` è la variabile che contiene il nome della tabella in cui cercare l'ordine, ``` $id ``` è la variabile che contiene l'id dell'ordine che ci interessa, ``` $product ``` è la variabile che contiene l'array degli ordini e il metodo ``` implode() ``` permette di spezzare un array) <br>
+
+Query per consegnare gli ordini:
+```sql
+UPDATE order_of_product SET licensePlate = '".$licensePlate."' WHERE IDOrderOfProduct IN (".implode(",", $_POST["order"]).")
+```
+Query per togliere il veicolo associato al guidatore:
+```sql
+UPDATE driver SET licensePlate = NULL WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
+```
+
+<h3> Operazione 12: raccogliere la spazzatura e rilasciarla </h3>
+
+Query per ottenere la _licensePlate_ del veicolo associato al guidatore e la sua _loadCapacity_:
+```sql
+SELECT driver.licensePlate, loadCapacity FROM driver, vehicle WHERE driver.fiscalCode = '". $_SESSION["fiscalCode"] ."' 
+AND driver.licensePlate = vehicle.licensePlate LIMIT 1
+```
+Query per mostrare i sacchetti da ritirare (per esserlo devono avere il campo _licensePlate_ nullo):
+```sql
+SELECT * FROM pick_up_garbage WHERE licensePlate IS NULL
+```
+Query per mostrare le discariche disponibili:
+```sql
+SELECT * FROM waste_disposal
+```
+Query per ottenere il peso totale di tutti gli ordini selezionati:
+```sql
+SELECT SUM(weight) as totalWeight FROM ".$table." WHERE ".$id." IN (".implode(",", $product).") LIMIT 1
+```
+Query per raccogliere la spazzatura:
+```sql
+UPDATE pick_up_garbage SET licensePlate = '".$licensePlate."', IDWasteDisposal = '".$_POST["disposal"]."' WHERE IDOrderGarbage IN (".implode(",", $_POST["garbage"]).")
+```
+Query per togliere il veicolo associato al guidatore:
+```sql
+UPDATE driver SET licensePlate = NULL WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
+```
+
+<h3> Operazione 13: associare un magazzino ad un magazziniere </h3>
+
+Query per controllare se il magazziniere ha già un magazzino associato:
+```sql
+SELECT IDWarehouse from warehouse_worker where fiscalCode = '".$_SESSION["fiscalCode"]."' LIMIT 1
+```
+Query per mostrare i magazzini disponibili (tutti tranne quello già associato):
+```sql
+SELECT warehouse.IDWarehouse, address FROM warehouse, warehouse_worker 
+WHERE (warehouse.IDWarehouse != warehouse_worker.IDWarehouse OR warehouse_worker.IDWarehouse IS NULL) AND fiscalCode = '".$_SESSION["fiscalCode"]."'
+```
+Query per associare il magazzino:
+```sql
+UPDATE warehouse_worker SET IDWarehouse = '".$_POST["warehouse"]."' WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
+```
+
+<h3> Operazione 14: aggiungere un nuovo prodotto al magazzino</h3>
+
+Query per ottenere l'_ID_ del magazzino associato:
+```sql
+SELECT IDWarehouse from warehouse_worker where fiscalCode = '".$_SESSION["fiscalCode"]."'
+```
+Query per mostrare i tipi di spazzatura:
+```sql
+SELECT type FROM garbage
+```
+Query per aggiungere il prodotto:
+_anche in questo caso per poter effettuare una sola scrittura la query è una stringa con concatenati tutti i valori da aggiungere, la query inizia con quanto segue_
+```sql
+INSERT INTO product (price, productType, capacity, garbageType, IDWarehouse) VALUES 
+```
+Query per aggiungere il prodotto al magazzino:
+_query realizzata allo stesso modo della precedente, ma in questo caso la query inizia in questo modo_
+```sql
+INSERT INTO ".$_POST["productType"]."(IDProduct) VALUES
+```
+(``` productType ``` è il nome della tabella a cui aggiungere i prodotti)
+
+<h3> Operazione 15: visualizzare l'inventario di tutti i magazzini </h3>
+
+```sql
+SELECT address, productType, capacity, price, garbageType FROM warehouse, product 
+WHERE IDOrder IS NULL AND product.IDWarehouse = warehouse.IDWarehouse ORDER BY warehouse.IDWarehouse
+```
+
+### Operazioni di controllo
+
+<h3>  Controllo se c'è una patente associata al guidatore </h3> 
+
+```sql
+SELECT IDOwns FROM owns WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
+```
+
+<h3> Controllo se il veicolo è assegnato al guidatore </h3> 
+
+```sql
+SELECT licensePlate FROM driver WHERE fiscalCode = '". $_SESSION["fiscalCode"] ."'
+```
 
 # Progettazione dell'applicazione
 
