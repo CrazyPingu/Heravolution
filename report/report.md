@@ -555,8 +555,10 @@ Query per visualizzare gli ordini di _pick up garbage_:
 ```sql
 SELECT licensePlate, date, pick_up_garbage.address AS a, totalPrice, weight, waste_disposal.address AS b
 FROM pick_up_garbage, waste_disposal 
-WHERE fiscalCode = '".$_SESSION["fiscalCode"]."' 
-  AND pick_up_garbage.IDWasteDisposal = waste_disposal.IDWasteDisposal 
+WHERE fiscalCode = '" . $_SESSION["fiscalCode"] . "' 
+  AND (pick_up_garbage.IDWasteDisposal = waste_disposal.IDWasteDisposal 
+  OR pick_up_garbage.IDWasteDisposal IS NULL) 
+GROUP BY IDOrderGarbage
 ORDER BY IDOrderGarbage
 ```
 <h4> - Operazione 8: assegnare un veicolo ad un guidatore </h4>
@@ -677,7 +679,7 @@ Query per ottenere la _licensePlate_ del veicolo associato al guidatore e la sua
 ```sql
 SELECT driver.licensePlate, loadCapacity 
 FROM driver, vehicle  
-WHERE driver.fiscalCode = '". $_SESSION["fiscalCode"] ."' 
+WHERE driver.fiscalCode = '".$_SESSION["fiscalCode"]."' 
   AND driver.licensePlate = vehicle.licensePlate 
 LIMIT 1
 ```

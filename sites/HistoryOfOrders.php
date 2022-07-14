@@ -38,7 +38,7 @@
     <?php
         $query = "SELECT licensePlate, date, pick_up_garbage.address AS a, totalPrice, weight, waste_disposal.address AS b
             FROM pick_up_garbage, waste_disposal WHERE fiscalCode = '" . $_SESSION["fiscalCode"] . "' 
-            AND pick_up_garbage.IDWasteDisposal = waste_disposal.IDWasteDisposal ORDER BY IDOrderGarbage ";
+            AND (pick_up_garbage.IDWasteDisposal = waste_disposal.IDWasteDisposal OR pick_up_garbage.IDWasteDisposal IS NULL) GROUP BY IDOrderGarbage ORDER BY IDOrderGarbage";
         $result = $conn->query($query);
         if ($result->num_rows > 0) {
             echo "<table><tr><th>Date</th><th>Address</th><th>Total price</th><th>Weight</th><th>Delivered</th><th>Waste disposal</th></tr>";
