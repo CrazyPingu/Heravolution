@@ -679,7 +679,7 @@ Query per ottenere la _licensePlate_ del veicolo associato al guidatore e la sua
 ```sql
 SELECT driver.licensePlate, loadCapacity 
 FROM driver, vehicle  
-WHERE driver.fiscalCode = '". $_SESSION["fiscalCode"] ."' 
+WHERE driver.fiscalCode = '".$_SESSION["fiscalCode"]."' 
   AND driver.licensePlate = vehicle.licensePlate 
 LIMIT 1
 ```
