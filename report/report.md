@@ -1,3 +1,10 @@
+<style>
+table {
+  border-collapse: collapse;
+  width : 100%;
+}
+
+</style>
 <div style="text-align: center">
     <h1> Elaborato per il corso di basi di dati </h1>
     <h2> A.A 2021/2022 <br> Heravolution </h2>
@@ -6,7 +13,7 @@
         Samuele De Tuglie samuele.detuglie@studio.unibo.it 0000989483 <br>
         Cristina Zoccola cristina.zoccola@studio.unibo.it 0000969874 </h3>
 </div>
-<div style="page-break-after: always;"></div>
+<div style="page-break-after: always;"/>
 
 <h1> Indice </h1>
 
@@ -20,18 +27,18 @@
   - [Stima del volume dei dati](#stima-del-volume-dei-dati)
   - [Descrizione delle operazioni principali e stima delle loro frequenze](#descrizione-delle-operazioni-principali-e-stima-delle-loro-frequenze)
   - [Schemi di navigazione e tabelle degli accessi](#schemi-di-navigazione-e-tabelle-degli-accessi)
-    - [Operazioni principali](#operazioni-principali)
-    - [Operazioni di controllo](#operazioni-di-controllo)
+    - [*Operazioni principali*](#operazioni-principali)
+    - [*Operazioni di controllo*](#operazioni-di-controllo)
   - [Raffinamento dello schema](#raffinamento-dello-schema)
   - [Analisi delle ridondanze](#analisi-delle-ridondanze)
   - [Traduzione di entità e associazioni in relazioni](#traduzione-di-entità-e-associazioni-in-relazioni)
   - [Schema relazione finale](#schema-relazione-finale)
   - [Traduzione delle operazioni in query SQL](#traduzione-delle-operazioni-in-query-sql)
-    - [Operazioni principali](#operazioni-principali-1)
-    - [Operazioni di controllo](#operazioni-di-controllo-1)
+    - [*Query principali*](#query-principali)
+    - [*Query di controllo*](#query-di-controllo)
 - [Progettazione dell'applicazione](#progettazione-dellapplicazione)
 
-<div style="page-break-after: always;"></div>
+<div style="page-break-after: always;"/>
 
 # Analisi dei requisiti
 ## Intervista
@@ -75,7 +82,7 @@ Lista delle principali operazioni effettuate:
 - aggiungere un nuovo prodotto al magazzino
 - visualizzare l'inventario di tutti i magazzini
 
-<div style="page-break-after: always;"></div>
+<div style="page-break-after: always;"/>
 
 # Progettazione concettuale
 ## Schema scheletro
@@ -93,8 +100,12 @@ Ad ogni _order of product_ sono associati i prodotti acquistati, mentre ad un _p
 Ad ogni _product_ quando viene acquistato viene associato l'_order of product_ e/o il _pick up garbage_ corrispondente. <br>
 Dopo una certa quantità di ordini il cliente ha uno sconto, memorizzato nel campo _discont_ della tabella _order of product_. <br>
 
+<div style="page-break-after: always;"/>
+
 ## Schema finale
 ![Conceptual ER](./res/conceptual.png) <br>
+
+<div style="page-break-after: always;"/>
 
 # Progettazione logica
 ## Stima del volume dei dati
@@ -119,7 +130,7 @@ Dopo una certa quantità di ordini il cliente ha uno sconto, memorizzato nel cam
 
 Ci aspettiamo di avere un numero elevato e sempre in aumento di _order_ (_pick up garbage_, _order of product_), _product_ (_trashbag_, _container_) e _drives_ , rispettivamente perchè gli _order_ e i _drives_ servono per gli storici, mentre i _product_ una volta essere stati venduti non vengono eliminati dal database per poter risalire a quali prodotti sono stati acquistati nei singoli ordini ed inoltre per poter scegliere quali _trashbag_ possono essere ritirate. <br>
 
-<div style="page-break-after: always;"></div>
+<div style="page-break-after: always;"/>
 
 ## Descrizione delle operazioni principali e stima delle loro frequenze
 
@@ -142,7 +153,7 @@ Ci aspettiamo di avere un numero elevato e sempre in aumento di _order_ (_pick u
 | 15     |visualizzare l'inventario di tutti i magazzini| 2 alla settimana  |
 
 ## Schemi di navigazione e tabelle degli accessi
-### Operazioni principali
+### *Operazioni principali*
 Di seguito sono riportate le tabelle degli accessi per ogni operazione sopra riportata: <br>
 
 <h4> - Operazione 1: aggiungere un nuovo cliente </h4>
@@ -153,6 +164,8 @@ Di seguito sono riportate le tabelle degli accessi per ogni operazione sopra rip
 | client   | E         | 1       | S    |
 
 totale: 2L + 1S → 80 al giorno
+
+<div style="page-break-after: always;"/>
 
 <h4> - Operazione 2: aggiungere un nuovo magazziniere </h4>
 
@@ -193,6 +206,8 @@ totale: 1L → 150.000 al giorno
 
 totale: 4L + 2S → 10.000 al giorno
 
+<div style="page-break-after: always;"/>
+
 <h4> - Operazione 6: richiedere la raccolta della spazzatura </h4>
 
 | Concetto         | Costrutto | Accessi | Tipo |
@@ -227,6 +242,9 @@ totale: 3L → 3.000 al giorno
 
 totale: 5L + 2S → 8.000 al giorno
 
+<div style="page-break-after: always;"/>
+
+
 <h4> - Operazione 9: inserire le patenti di un guidatore </h4>
 
 | Concetto         | Costrutto | Accessi | Tipo |
@@ -257,6 +275,8 @@ totale: 2L → 100 all'anno
 | driver           | E         | 1       | S    |
 
 totale: 4L + 2S → 5.500 al giorno
+
+<div style="page-break-after: always;"/>
 
 <h4> - Operazione 12: raccogliere la spazzatura e rilasciarla </h4>
 
@@ -294,6 +314,8 @@ L'ultima operazione cambia in base a che tipo di prodotto si sta aggiungendo
 
 totale: 2L + 2S → 25.000 al giorno
 
+<div style="page-break-after: always;"/>
+
 <h4> - Operazione 15: visualizzare l'inventario di tutti i magazzini </h4>
 
 | Concetto         | Costrutto | Accessi | Tipo |
@@ -303,10 +325,10 @@ totale: 2L + 2S → 25.000 al giorno
 
 totale: 2L → 2 alla settimana
 
-### Operazioni di controllo
+### *Operazioni di controllo*
 Le sequenti operazioni vengono eseguite ogni volta che un guidatore vuole rispondere ad un ordine.
 
-<h3>  Controllo se c'è una patente associata al guidatore </h3> 
+<h4> - Controllo se c'è una patente associata al guidatore </h4> 
 
 | Concetto         | Costrutto | Accessi | Tipo |
 |:-----------------|:---------:|:-------:|:----:|
@@ -314,13 +336,15 @@ Le sequenti operazioni vengono eseguite ogni volta che un guidatore vuole rispon
 
 totale: 1L
 
-<h3> Controllo se il veicolo è assegnato al guidatore </h3> 
+<h4> - Controllo se il veicolo è assegnato al guidatore </h4> 
 
 | Concetto         | Costrutto | Accessi | Tipo |
 |:-----------------|:---------:|:-------:|:----:|
 | driver           | E         | 1       | L    |
 
 totale: 1L
+
+<div style="page-break-after: always;"/>
 
 ## Raffinamento dello schema
 <h4> - Eliminazione delle gerarchie </h4>
@@ -331,7 +355,7 @@ Per le gerarchie _product_ e _client_ si è scelto di utilizzare un metodo ibrid
 <h4> - Trasformazione di relazioni in entità </h4>
 
 È stata trasformata la relazione _owns_ in un'entità che rappresenta la relazione molti a molti tra _driver_ e _driver\_license_; è stata trasformata anche la relazione _drives_ che ci permette di mantenere lo storico dei veicoli assegnati ai guidatori. 
-
+<br><br>
 ## Analisi delle ridondanze
 La prima ridondanza che abbiamo deciso di inserire è il campo _userType_ in client, mantenendo le tabelle _driver_ e _warehouse\_worker_.
 
@@ -355,6 +379,8 @@ totale: 3L → 450.000 al giorno
 
 La seconda ridondanza è presente nell'entità _product_, che contiene il campo _productType_ (stesso caso della ridondanza sopra citata).
 
+<div style="page-break-after: always;"/>
+
 ## Traduzione di entità e associazioni in relazioni
 
 |Traduzione tabelle                                                                                                                                                  |
@@ -368,21 +394,25 @@ La seconda ridondanza è presente nell'entità _product_, che contiene il campo 
 | brand (<u>name</u>)                                                                                                                                                |
 | warehouse_worker (<u>fiscalCode</u> : client, IDWarehouse* : warehouse)                                                                                            |
 | warehouse (<u>IDWarehouse</u>, address)                                                                                                                            |
-| product (<u>IDProduct</u>, price, productType, capacity, garbageType : garbage, IDOrder* : order_of_product, IDWarehouse : warehouse)                              |
+| product (<u>IDProduct</u>, price, productType, capacity, garbageType : garbage, IDOrder* : order_of_product,  IDWarehouse : warehouse)                              |
 | trashbag (<u>IDProduct</u> : product, IDOrderGarbage* : pick_up_garbage)                                                                                           |
 | container (<u>IDProduct</u> : product)                                                                                                                             |
 | garbage (<u> type </u>)                                                                                                                                            |
-| pick_up_garbage (<u>IDOrderGarbage</u>, date, time, address, totalPrice, weight, licensePlate* : vehicle, fiscalCode : client, IDWasteDisposal* : waste_disposal)  |
-| order_of_product (<u>IDOrderOfProduct</u>, date, weight, time, address, discountValue*, totalPrice, fiscalCode : client, licensePlate* : vehicle)                  |
+| pick_up_garbage (<u>IDOrderGarbage</u>, date, time, address, totalPrice, weight, licensePlate* : vehicle, <br> fiscalCode : client, IDWasteDisposal* : waste_disposal)  |
+| order_of_product (<u>IDOrderOfProduct</u>, date, weight, time, address, discountValue*, totalPrice, <br>  fiscalCode : client, licensePlate* : vehicle)                  |
 | waste_disposal (<u>IDWasteDisposal</u>, address)                                                                                                                   |
+
+<div style="page-break-after: always;"/>
 
 ## Schema relazione finale
 
 ![Logic](./res/logic.png) <br>
 
+<div style="page-break-after: always;"/>
+
 ## Traduzione delle operazioni in query SQL
 
-### Operazioni principali
+### *Query principali*
 
 Di seguito nelle operazioni effettuate i seguenti valori indicano: <br>
 ``` $_POST[] ``` : è l'input dell'utente all'interno delle corrispettive form <br>
@@ -418,6 +448,8 @@ Si svolge come l'operazione 1 ma con l'aggiunta della query per inserire il maga
 INSERT INTO warehouse_worker(fiscalCode) 
 VALUES (?)
 ```
+
+<div style="page-break-after: always;"/>
 
 <h4> - Operazione 3: aggiungere un nuovo guidatore </h4>
 
@@ -457,6 +489,9 @@ SELECT SUM(capacity) AS weight
 FROM product 
 WHERE IDProduct IN (".get_array($product).")
 ```
+
+<div style="page-break-after: always;"/>
+
 Query per ottenere il prezzo totale dell'ordine:
 ```sql
 SELECT SUM(price) AS totalPrice 
@@ -493,6 +528,9 @@ SELECT SUM(capacity) AS weight
 FROM product 
 WHERE IDProduct IN (".get_array($product).")
 ```
+
+<div style="page-break-after: always;"/>
+
 Query per inserire l'ordine:
 ```sql
 INSERT INTO pick_up_garbage(fiscalCode, date, time, address, totalPrice, weight) 
@@ -529,6 +567,9 @@ SELECT licensePlate
 FROM driver 
 WHERE fiscalCode = '". $_SESSION["fiscalCode"] ."'
 ```
+
+<div style="page-break-after: always;"/>
+
 Query per mostrare i veicoli disponibili (per esserlo non devono essere associati a nessun altro guidatore e il guidatore deve avere la patente corrispondente):
 ```sql
 SELECT vehicle.* 
@@ -563,6 +604,9 @@ SELECT IDOwns
 FROM owns 
 WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
 ```
+
+<div style="page-break-after: always;"/>
+
 Query per mostrare le patenti inseribili (quelle diverse da quelle già associate):
 ```sql
 SELECT type 
@@ -572,7 +616,7 @@ WHERE type NOT IN (
   FROM owns 
   WHERE fiscalCode = '".$_SESSION["fiscalCode"]."')
 ```
-Query per inserire la patente:
+Query per inserire la patente:<br>
 _per permetterci di effettuare una sola scrittura nel database la query è una stringa a cui vengono concatenati tutti i valori da inserire, l'inizio della query è quello che segue_
 ```sql
 INSERT INTO owns (type, fiscalCode) 
@@ -643,6 +687,9 @@ SELECT *
 FROM pick_up_garbage 
 WHERE licensePlate IS NULL
 ```
+
+<div style="page-break-after: always;"/>
+
 Query per mostrare le discariche disponibili:
 ```sql
 SELECT * 
@@ -677,6 +724,9 @@ FROM warehouse_worker
 WHERE fiscalCode = '".$_SESSION["fiscalCode"]."' 
 LIMIT 1
 ```
+
+<div style="page-break-after: always;"/>
+
 Query per mostrare i magazzini disponibili (tutti tranne quello già associato):
 ```sql
 SELECT warehouse.IDWarehouse, address FROM warehouse, warehouse_worker 
@@ -703,13 +753,16 @@ Query per mostrare i tipi di spazzatura:
 SELECT type 
 FROM garbage
 ```
-Query per aggiungere il prodotto:
+Query per aggiungere il prodotto:<br>
 _anche in questo caso per poter effettuare una sola scrittura la query è una stringa con concatenati tutti i valori da aggiungere, la query inizia con quanto segue_
 ```sql
 INSERT INTO product (price, productType, capacity, garbageType, IDWarehouse) 
 VALUES 
 ```
-Query per aggiungere il prodotto al magazzino:
+
+<div style="page-break-after: always;"/>
+
+Query per aggiungere il prodotto al magazzino:<br>
 _query realizzata allo stesso modo della precedente, ma in questo caso la query inizia in questo modo_
 ```sql
 INSERT INTO ".$_POST["productType"]."(IDProduct) 
@@ -725,7 +778,7 @@ WHERE IDOrder IS NULL AND product.IDWarehouse = warehouse.IDWarehouse
 ORDER BY warehouse.IDWarehouse
 ```
 
-### Operazioni di controllo
+### *Query di controllo*
 
 <h4>  - Controllo se c'è una patente associata al guidatore </h4> 
 
@@ -743,12 +796,17 @@ FROM driver
 WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
 ```
 
+<div style="page-break-after: always;"/>
+
 # Progettazione dell'applicazione
 
 Per interfacciarsi al database si è optato per realizzare un sito web (fatto con html, css, php e javascript); il server apache per reinderizzare il sito risiede in remoto insieme al database mySQL. <br>All'apertura del sito appare la pagina di login : <br>
 ![Login page](./res/login-page.png) <br><br>
 Una volta entrati si viene reinderizzati nella pagina del cliente: <br>
 ![Client page](./res/client-page.png) <br><br>
+
+<div style="page-break-after: always;"/>
+
 Che in base ai propri permessi (se si è guidatori o magazzinieri) permette di accedere alle relative pagine: <br>
 - Guidatore: <br>
 ![Driver page](./res/driver-page.png) <br>
