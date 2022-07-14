@@ -30,7 +30,6 @@
     - [Operazioni principali](#operazioni-principali-1)
     - [Operazioni di controllo](#operazioni-di-controllo-1)
 - [Progettazione dell'applicazione](#progettazione-dellapplicazione)
-  - [Descrizione dell'architettura dell'applicazione realizzata](#descrizione-dellarchitettura-dellapplicazione-realizzata)
 
 <div style="page-break-after: always;"></div>
 
@@ -741,10 +740,20 @@ WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
 ```sql
 SELECT licensePlate 
 FROM driver 
-WHERE fiscalCode = '". $_SESSION["fiscalCode"] ."'
+WHERE fiscalCode = '".$_SESSION["fiscalCode"]."'
 ```
 
 # Progettazione dell'applicazione
 
-## Descrizione dell'architettura dell'applicazione realizzata
+Per interfacciarsi al database si è optato per realizzare un sito web (fatto con html, css, php e javascript); il server apache per reinderizzare il sito risiede in remoto insieme al database mySQL. <br>All'apertura del sito appare la pagina di login : <br>
+![Login page](./res/login-page.png) <br><br>
+Una volta entrati si viene reinderizzati nella pagina del cliente: <br>
+![Client page](./res/client-page.png) <br><br>
+Che in base ai propri permessi (se si è guidatori o magazzinieri) permette di accedere alle relative pagine: <br>
+- Guidatore: <br>
+![Driver page](./res/driver-page.png) <br>
+- Magazziniere: <br>
+![Warehouse worker page](./res/warehouse-worker-page.png) <br>
 
+Con i relativi bottoni nelle pagine sopra citate è possibile accedere alle altre funzionalità dell'applicazione.<br>
+Ai fini di evitare possibili _SQL injection_ prima di inserire valori all'interno del database ogni valore viene opportunamente controllato, inoltre l'applicazione stessa controlla la correttezza dei dati inseriti.
