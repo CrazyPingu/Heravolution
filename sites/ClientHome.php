@@ -96,27 +96,6 @@
             return $row['weight'];
         }
 
-        if(isset($_POST['submit2'])) {
-            if (empty($_POST['garbage'])) {
-                echo "<script>alert('No product selected')</script>";
-            } else {
-                $weight = get_weight($conn, $_POST['garbage']);
-                $totalPrice = count($_POST["garbage"]);
-                $query = "INSERT INTO pick_up_garbage(fiscalCode, date, time, address, totalPrice, weight) VALUES (?, ?, ?, ?, ?, ?)";
-                $stmt = $conn -> prepare($query);
-                $stmt -> bind_param("ssssii", $_SESSION['fiscalCode'], $_POST['date'], $_POST['time'], $_POST['address'], $totalPrice, $weight);
-                $stmt -> execute();
-                $last_id = $conn -> insert_id;
-
-                //aggiungo l'id dell'ordine ai prodotti
-                $query = "UPDATE trashbag SET IDOrderGarbage = ".$last_id." WHERE IDProduct IN (".get_array($_POST["garbage"]).")";
-                $conn -> query($query);
-                echo "<script>alert('Order added')</script>";
-                header("Location: ClientHome.php");
-            }
-
-        }
-
         if (isset($_POST['submit'])) {
             $discount = get_discount($conn);
             if (empty($_POST['product'])) {
@@ -142,6 +121,26 @@
 
                 //aggiungo l'id dell'ordine ai prodotti
                 $query = "UPDATE product SET IDOrder = ".$last_id." WHERE IDProduct IN (".get_array($_POST["product"]).")";
+                $conn -> query($query);
+                echo "<script>alert('Order added')</script>";
+                header("Location: ClientHome.php");
+            }
+        }
+
+        if(isset($_POST['submit2'])) {
+            if (empty($_POST['garbage'])) {
+                echo "<script>alert('No product selected')</script>";
+            } else {
+                $weight = get_weight($conn, $_POST['garbage']);
+                $totalPrice = count($_POST["garbage"]);
+                $query = "INSERT INTO pick_up_garbage(fiscalCode, date, time, address, totalPrice, weight) VALUES (?, ?, ?, ?, ?, ?)";
+                $stmt = $conn -> prepare($query);
+                $stmt -> bind_param("ssssii", $_SESSION['fiscalCode'], $_POST['date'], $_POST['time'], $_POST['address'], $totalPrice, $weight);
+                $stmt -> execute();
+                $last_id = $conn -> insert_id;
+
+                //aggiungo l'id dell'ordine ai prodotti
+                $query = "UPDATE trashbag SET IDOrderGarbage = ".$last_id." WHERE IDProduct IN (".get_array($_POST["garbage"]).")";
                 $conn -> query($query);
                 echo "<script>alert('Order added')</script>";
                 header("Location: ClientHome.php");
