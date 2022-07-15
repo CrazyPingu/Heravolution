@@ -4,14 +4,40 @@ table {
   width : 100%;
 }
 
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.centerVertical {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 50px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
 </style>
 <div style="text-align: center">
     <h1> Elaborato per il corso di basi di dati </h1>
-    <h2> A.A 2021/2022 <br> Heravolution </h2>
-    <br>
-    <h3> Componenti: <br>
-        Samuele De Tuglie samuele.detuglie@studio.unibo.it 0000989483 <br>
-        Cristina Zoccola cristina.zoccola@studio.unibo.it 0000969874 </h3>
+    <h2> A.A. 2021/2022 <br> Heravolution </h2>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <h2> Componenti: <h2>
+    <h3> <div class = "centerVertical">
+      <span> Samuele De Tuglie </span>
+      <span> Cristina Zoccola </span>
+      <span> samuele.detuglie@studio.unibo.it </span>
+      <span> cristina.zoccola@studio.unibo.it </span> 
+      <span> 0000989483 </span>
+      <span> 0000969874 </span> 
+    </div> </h3>
 </div>
 <div style="page-break-after: always;"/>
 
@@ -49,7 +75,7 @@ La raccolta dei rifiuti a domicilio sarà disponibile solo se prima sono stati a
 I guidatori si occupano della consegna dei prodotti acquistati e di gestire la raccolta dei rifiuti a domicilio scegliendo anche l'apposita discarica in cui smaltirli, inoltre sono anche considerati dei clienti (quindi possono usufruire dei servizi legati a tale ruolo). <br>
 Ogni guidatore deve inserire le patenti che possiede, con la possibilità di aggiornarle in futuro, quindi per effettuare le proprie mansioni potrà scegliere solo tra i veicoli che gli è permesso guidare, stando però attento a cosa deve trasportare siccome ogni mezzo ha una capacità di trasporto massima. <br>
 I magazzinieri sono coloro che si occupano di rifornire i diversi magazzini con i prodotti da vendere, durate l'inserimento deve specificare tutte le caratteristiche dei prodotti, proprio come i guidatori anche loro sono considerati dei clienti. <br>
-Ogni magazziniere deve scegliere un magazzino in cui rifornire i prodotti, che inoltre può cambiare in qualsiasi momento. <br>
+Ogni magazziniere deve scegliere un magazzino in cui rifornire i prodotti, inoltre può cambiare magazzino da rifornire in qualsiasi momento. <br>
 ## Estrazione dei concetti principali
 | Termine      | Descrizione                                                            | Sinonimi         |
 |:-------------|:-----------------------------------------------------------------------|:-----------------|
@@ -127,6 +153,7 @@ Dopo una certa quantità di ordini il cliente ha uno sconto, memorizzato nel cam
 | trashbag         | E         | 3.700.000 |
 | container        | E         | 1.300.000 |
 | waste disposal   | E         | 20        |
+| owns             | R         | 3.000     |
 
 Ci aspettiamo di avere un numero elevato e sempre in aumento di _order_ (_pick up garbage_, _order of product_), _product_ (_trashbag_, _container_) e _drives_ , rispettivamente perchè gli _order_ e i _drives_ servono per gli storici, mentre i _product_ una volta essere stati venduti non vengono eliminati dal database per poter risalire a quali prodotti sono stati acquistati nei singoli ordini ed inoltre per poter scegliere quali _trashbag_ possono essere ritirate. <br>
 
@@ -163,7 +190,7 @@ Di seguito sono riportate le tabelle degli accessi per ogni operazione sopra rip
 | client   | E         | 2       | L    |
 | client   | E         | 1       | S    |
 
-totale: 2L + 1S → 80 al giorno
+totale: 2L + 1S → 240 al giorno
 
 <div style="page-break-after: always;"/>
 
@@ -175,7 +202,7 @@ totale: 2L + 1S → 80 al giorno
 | client           | E         | 1       | S    |
 | warehouse worker | E         | 1       | S    |
 
-totale: 2L + 2S → 30 all'anno
+totale: 2L + 2S → 120 all'anno
 
 <h4> - Operazione 3: aggiungere un nuovo guidatore </h4>
 
@@ -185,7 +212,7 @@ totale: 2L + 2S → 30 all'anno
 | client   | E         | 1       | S    |
 | driver   | E         | 1       | S    |
 
-totale: 2L + 2S → 30 all'anno
+totale: 2L + 2S → 120 all'anno
 
 <h4> - Operazione 4: effettuare l'accesso degli utenti </h4>
 
@@ -204,7 +231,7 @@ totale: 1L → 150.000 al giorno
 | order of product | E         | 1       | S    |
 | product          | E         | 1       | S    |
 
-totale: 4L + 2S → 10.000 al giorno
+totale: 4L + 2S → 60.000 al giorno
 
 <div style="page-break-after: always;"/>
 
@@ -218,7 +245,7 @@ totale: 4L + 2S → 10.000 al giorno
 | pick up garbage  | E         | 1       | S    |
 | trashbag         | E         | 1       | S    |
 
-totale: 4L + 2S → 5.000 al giorno
+totale: 4L + 2S → 30.000 al giorno
 
 <h4> - Operazione 7: mostrare la cronologia degli ordini effettuati </h4>
 
@@ -228,7 +255,7 @@ totale: 4L + 2S → 5.000 al giorno
 | pick up garbage  | E         | 1       | L    |
 | waste disposal   | E         | 1       | L    |
 
-totale: 3L → 3.000 al giorno
+totale: 3L → 9.000 al giorno
 
 <h4> - Operazione 8: assegnare un veicolo ad un guidatore </h4>
 
@@ -240,7 +267,7 @@ totale: 3L → 3.000 al giorno
 | driver           | E         | 1       | S    |
 | drives           | R         | 1       | S    |
 
-totale: 5L + 2S → 8.000 al giorno
+totale: 5L + 2S → 56.000 al giorno
 
 <div style="page-break-after: always;"/>
 
@@ -253,7 +280,7 @@ totale: 5L + 2S → 8.000 al giorno
 | driver license   | E         | 1       | L    |
 | owns             | R         | 1       | S    |
 
-totale: 3L + 1S → 70 all'anno
+totale: 3L + 1S → 280 all'anno
 
 <h4> - Operazione 10: mostrare la cronologia dei veicoli assegnati </h4>
 
@@ -262,7 +289,7 @@ totale: 3L + 1S → 70 all'anno
 | drives           | R         | 1       | L    |
 | vehicle          | E         | 1       | L    |
 
-totale: 2L → 100 all'anno
+totale: 2L → 200 all'anno
 
 <h4> - Operazione 11: consegnare gli ordini effettuati </h4> 
 
@@ -274,7 +301,7 @@ totale: 2L → 100 all'anno
 | order of product | E         | 1       | S    |
 | driver           | E         | 1       | S    |
 
-totale: 4L + 2S → 5.500 al giorno
+totale: 4L + 2S → 33.000 al giorno
 
 <div style="page-break-after: always;"/>
 
@@ -289,7 +316,7 @@ totale: 4L + 2S → 5.500 al giorno
 | pick up garbage  | E         | 1       | S    |
 | driver           | E         | 1       | S    |
 
-totale: 5L + 2S → 2.500 al giorno
+totale: 5L + 2S → 17.500 al giorno
 
 <h4> - Operazione 13: associare un magazzino ad un magazziniere </h4>
 
@@ -299,7 +326,7 @@ totale: 5L + 2S → 2.500 al giorno
 | warehouse        | E         | 1       | L    |
 | warehouse worker | E         | 1       | S    |
 
-totale: 3L + 1S → 45 all'anno
+totale: 3L + 1S → 180 all'anno
 
 <h4> - Operazione 14: aggiungere un nuovo prodotto al magazzino</h4>
 
@@ -312,7 +339,7 @@ totale: 3L + 1S → 45 all'anno
 
 L'ultima operazione cambia in base a che tipo di prodotto si sta aggiungendo
 
-totale: 2L + 2S → 25.000 al giorno
+totale: 2L + 2S → 100.000 al giorno
 
 <div style="page-break-after: always;"/>
 
@@ -323,7 +350,7 @@ totale: 2L + 2S → 25.000 al giorno
 | warehouse        | E         | 1       | L    |
 | product          | E         | 1       | L    |
 
-totale: 2L → 2 alla settimana
+totale: 2L → 4 alla settimana
 
 ### *Operazioni di controllo*
 Le sequenti operazioni vengono eseguite ogni volta che un guidatore vuole rispondere ad un ordine.
@@ -383,24 +410,24 @@ La seconda ridondanza è presente nell'entità _product_, che contiene il campo 
 
 ## Traduzione di entità e associazioni in relazioni
 
-|Traduzione tabelle                                                                                                                                                  |
-|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| client (<u>fiscalCode</u>, name, surname, username, password, userType)                                                                                            |
-| driver (<u>fiscalCode</u> : client, licensePlate* : vehicle)                                                                                                       |
-| drives (<u>IDDrives</u>, date, fiscalCode : client, licensePlate : vehicle)                                                                                        |
-| driver_license (<u>type</u>)                                                                                                                                       |
-| owns (<u>IDOwns</u>, type : driver_license, fiscalCode:driver)                                                                                                     |
-| vehicle (<u>licensePlate</u>, loadCapacity, brandName : brand, driverLicense : driver_license)                                                                     |
-| brand (<u>name</u>)                                                                                                                                                |
-| warehouse_worker (<u>fiscalCode</u> : client, IDWarehouse* : warehouse)                                                                                            |
-| warehouse (<u>IDWarehouse</u>, address)                                                                                                                            |
-| product (<u>IDProduct</u>, price, productType, capacity, garbageType : garbage, IDOrder* : order_of_product,  IDWarehouse : warehouse)                              |
-| trashbag (<u>IDProduct</u> : product, IDOrderGarbage* : pick_up_garbage)                                                                                           |
-| container (<u>IDProduct</u> : product)                                                                                                                             |
-| garbage (<u> type </u>)                                                                                                                                            |
-| pick_up_garbage (<u>IDOrderGarbage</u>, date, time, address, totalPrice, weight, licensePlate* : vehicle, <br> fiscalCode : client, IDWasteDisposal* : waste_disposal)  |
-| order_of_product (<u>IDOrderOfProduct</u>, date, weight, time, address, discountValue*, totalPrice, <br>  fiscalCode : client, licensePlate* : vehicle)                  |
-| waste_disposal (<u>IDWasteDisposal</u>, address)                                                                                                                   |
+|Traduzione tabelle                                                                                                                                                      |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| client (<u>fiscalCode</u>, name, surname, username, password, userType)                                                                                                |
+| driver (<u>fiscalCode</u> : client, licensePlate* : vehicle)                                                                                                           |
+| drives (<u>IDDrives</u>, date, fiscalCode : client, licensePlate : vehicle)                                                                                            |
+| driver_license (<u>type</u>)                                                                                                                                           |
+| owns (<u>IDOwns</u>, type : driver_license, fiscalCode:driver)                                                                                                         |
+| vehicle (<u>licensePlate</u>, loadCapacity, brandName : brand, driverLicense : driver_license)                                                                         |
+| brand (<u>name</u>)                                                                                                                                                    |
+| warehouse_worker (<u>fiscalCode</u> : client, IDWarehouse* : warehouse)                                                                                                |
+| warehouse (<u>IDWarehouse</u>, address)                                                                                                                                |
+| product (<u>IDProduct</u>, price, productType, capacity, garbageType : garbage, IDOrder* : order_of_product,  IDWarehouse : warehouse)                                 |
+| trashbag (<u>IDProduct</u> : product, IDOrderGarbage* : pick_up_garbage)                                                                                               |
+| container (<u>IDProduct</u> : product)                                                                                                                                 |
+| garbage (<u> type </u>)                                                                                                                                                |
+| pick_up_garbage (<u>IDOrderGarbage</u>, date, time, address, totalPrice, weight, licensePlate* : vehicle, <br> fiscalCode : client, IDWasteDisposal* : waste_disposal) |
+| order_of_product (<u>IDOrderOfProduct</u>, date, weight, time, address, discountValue*, totalPrice, <br>  fiscalCode : client, licensePlate* : vehicle)                |
+| waste_disposal (<u>IDWasteDisposal</u>, address)                                                                                                                       |
 
 <div style="page-break-after: always;"/>
 
@@ -517,7 +544,7 @@ SELECT product.* FROM product, trashbag
 WHERE product.productType = 'trashbag' 
   AND trashbag.IDOrderGarbage IS NULL 
   AND product.IDOrder = ANY
-  ( SELECT IDOrderOfProduct FROM order_of_product 
+    (SELECT IDOrderOfProduct FROM order_of_product 
     WHERE fiscalcode = '".$_SESSION['fiscalCode']."' 
     AND licensePlate IS NOT NULL)
   AND product.IDProduct = trashbag.IDProduct
@@ -809,7 +836,7 @@ Una volta entrati si viene reinderizzati nella pagina del cliente: <br>
 
 <div style="page-break-after: always;"/>
 
-Che in base ai propri permessi (se si è guidatori o magazzinieri) permette di accedere alle relative pagine: <br>
+In base ai propri permessi (se si è guidatori o magazzinieri) dalla pagina del cliente è permesso accedere alle relative pagine: <br>
 - Guidatore: <br>
 ![Driver page](./res/driver-page.png) <br>
 - Magazziniere: <br>
