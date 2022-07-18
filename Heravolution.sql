@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Lug 14, 2022 alle 17:00
+-- Creato il: Lug 18, 2022 alle 16:41
 -- Versione del server: 10.5.15-MariaDB-0+deb11u1
 -- Versione PHP: 8.1.7
 
@@ -300,7 +300,8 @@ ALTER TABLE `brand`
 -- Indici per le tabelle `client`
 --
 ALTER TABLE `client`
-  ADD PRIMARY KEY (`fiscalCode`);
+  ADD PRIMARY KEY (`fiscalCode`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indici per le tabelle `container`
